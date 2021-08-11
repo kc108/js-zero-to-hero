@@ -1,4 +1,8 @@
-# 4 Steps to Solve Any Problem
+# 3-DEVELOPER SKILLS
+
+---
+
+## 4 Steps to Solve Any Problem
 
 1. make sure you understand 100% of the problem
 
@@ -13,3 +17,10 @@
 3. Don't be afraid of research.
 
 4. For bigger problems, write pseudo-code before writing actual code
+
+---
+
+## The Debugging Process
+
+- may work in one browser & not another
+- writing Testing as you code is an important concept and should be done as a best practice
