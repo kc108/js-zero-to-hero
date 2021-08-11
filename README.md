@@ -24,3 +24,8 @@
 
 - may work in one browser & not another
 - writing Testing as you code is an important concept and should be done as a best practice
+
+### Debugging
+
+- 1. Debugger to use breakpoints
+- in Developer console, go-to 'Sources', then script.js
