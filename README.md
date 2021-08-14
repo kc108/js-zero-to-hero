@@ -32,4 +32,7 @@
 
 --
 
-##
+## DOM Manipulation
+
+- jQuery
+- CSS DOM Manipulation
