@@ -30,9 +30,23 @@
 - 1. Debugger to use breakpoints
 - in Developer console, go-to 'Sources', then script.js
 
---
+---
 
 ## DOM Manipulation
 
+###### August 14, 2021
+
+##### SECTION: 05-Guess-My-Number
+
 - jQuery
 - CSS DOM Manipulation
+- jQuery modal practice
+- refactoring when guess is either too low or high by using ternary operator
+
+---
+
+## Modal Window
+
+###### August 14, 2021
+
+##### SECTION: 06-Modal
