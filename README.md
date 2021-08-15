@@ -50,3 +50,9 @@
 ###### August 14, 2021
 
 ##### SECTION: 06-Modal
+
+- used jQuery to manipulate style.css and other js
+
+##### SECTION: 07-Pig-Game
+
+- Rolling dice game practice
