@@ -56,3 +56,4 @@
 ##### SECTION: 07-Pig-Game
 
 - Rolling dice game practice
+- completed Pig_Game rolling dice game
