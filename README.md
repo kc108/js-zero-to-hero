@@ -57,3 +57,7 @@
 
 - Rolling dice game practice
 - completed Pig_Game rolling dice game
+
+##### SECTION 8: How JavaScript works behind the scenes
+
+-
