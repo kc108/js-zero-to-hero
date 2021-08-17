@@ -173,52 +173,52 @@
 // Regular Functions vs. Arrow Functions
 //////////////////////////////////////////////
 
-// this is an OBJECT LITERAL NOT AN OBJECT
-const jonas = {
-  firstName: 'Jonas',
-  year: 1991,
-  calcAge: function () {
-    // console.log(this);
-    console.log(2037 - this.year); // 46
+// // this is an OBJECT LITERAL NOT AN OBJECT
+// const jonas = {
+//   firstName: 'Jonas',
+//   year: 1991,
+//   calcAge: function () {
+//     // console.log(this);
+//     console.log(2037 - this.year); // 46
 
-    // ******* SOLUTION 1 *******
-    // const self = this; // self or that => this is a way to solve the way to go around and not get UNDEFINED.. however the better solution is to do an ARROW FUNCTION
-    // const isMillenial = function () {
-    //   // console.log(this); // this is UNDEFINED
-    //   console.log(self);
-    //   //   console.log(this.year >= 1981 && this.year <= 1996);
-    //   // };
-    //   console.log(self.year >= 1981 && self.year <= 1996);
-    // };
+// ******* SOLUTION 1 *******
+// const self = this; // self or that => this is a way to solve the way to go around and not get UNDEFINED.. however the better solution is to do an ARROW FUNCTION
+// const isMillenial = function () {
+//   // console.log(this); // this is UNDEFINED
+//   console.log(self);
+//   //   console.log(this.year >= 1981 && this.year <= 1996);
+//   // };
+//   console.log(self.year >= 1981 && self.year <= 1996);
+// };
 
-    // ***** SOLUTION 2 *******
-    // const self = this; // self or that => this is a way to solve the way to go around and not get UNDEFINED.. however the better solution is to do an ARROW FUNCTION
+// ***** SOLUTION 2 *******
+// const self = this; // self or that => this is a way to solve the way to go around and not get UNDEFINED.. however the better solution is to do an ARROW FUNCTION
 
-    const isMillenial = () => {
-      // console.log(this); // this is UNDEFINED
-      console.log(this);
-      //   console.log(this.year >= 1981 && this.year <= 1996);
-      // };
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
+// const isMillenial = () => {
+//   // console.log(this); // this is UNDEFINED
+//   console.log(this);
+//   //   console.log(this.year >= 1981 && this.year <= 1996);
+//   // };
+//   console.log(this.year >= 1981 && this.year <= 1996);
+// };
 
-    isMillenial();
-  },
+//   isMillenial();
+// },
 
-  // DON'T USE THIS:
-  //   greet: () =>
-  //   console.log(this); // will display the 'window' object in the devConsole
-  //   console.log(`Hey, ${this.firstName}`),
-  // };
+// DON'T USE THIS:
+//   greet: () =>
+//   console.log(this); // will display the 'window' object in the devConsole
+//   console.log(`Hey, ${this.firstName}`),
+// };
 
-  // ** USE THIS **
-  greet: function () {
-    console.log(this);
-    console.log(`Hey ${this.firstName}`);
-  },
-};
-jonas.greet();
-jonas.calcAge();
+//   // ** USE THIS **
+//   greet: function () {
+//     console.log(this);
+//     console.log(`Hey ${this.firstName}`);
+//   },
+// };
+// jonas.greet();
+// jonas.calcAge();
 
 // jonas.greet(); // this will be result in UNDEFINED with an ARROW FUNCTION because it takes it from the GLOBAL SCOPE
 // console.log(this.firstName); // this will ALSO be UNDEFINED
@@ -229,16 +229,20 @@ jonas.calcAge();
 
 // ARGUMENTS KEYWORD
 // ARGUMENTS KEYWORD only works with the FUNCTION KEYWORD, NOT the ArrowFunction Keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 5);
-addExpr(2, 5, 8, 12); // #-> 2, 5, 8, 12
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExpr(2, 5);
+// addExpr(2, 5, 8, 12); // #-> 2, 5, 8, 12
 
-// this will NOT log the extra parameters like the FUNCTION expression above, it does not work with ES6, arrow functions
-var addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
-addArrow(2, 5, 8); // #-> UNCAUGHT REFERENCE ERROR
+// // this will NOT log the extra parameters like the FUNCTION expression above, it does not work with ES6, arrow functions
+// var addArrow = (a, b) => {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addArrow(2, 5, 8); // #-> UNCAUGHT REFERENCE ERROR
+
+//////////////////////////////////////////////
+// TODO: 99.) Primitives vs. Objects
+//////////////////////////////////////////////
