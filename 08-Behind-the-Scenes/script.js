@@ -87,17 +87,84 @@
 //   console.log('All products deleted!');
 // }
 
+// // EXAMPLE:
+// var numProducts = 10;
+
+// function deleteShoppingCart() {
+//   console.log('All products have been deleted!');
+// }
+
+// var x = 1;
+// let y = 2;
+// const z = 3;
+
+// console.log(x === window.x);
+// console.log(x === window.y);
+// console.log(x === window.z);
+
+/////////////////////////////////////////
+// 'THIS' keyword: special variable that is created for every execution context(every function). Takes the value of (points to) the "owner" of the function in which the 'this' keyword is used
+/////////////////////////////////////////
+// 'this' keyword is NOT static. It depends how the function is ACTUALLY CALLED.
+// 1) Method: this = <Object that is calling the method>
+// Example:
+// const jonas = {
+//   name: 'Jonas',
+//   year: 1989,
+//   calcAge: function () {
+//     return 2037 - this.year;
+//   },
+// };
+// jonas.calcAge(); // 48
+
+// 2) Simple function call: this = undefined UNLESS you are NOT in strict mode then it will pt to a global variable
+
+// 3) Arrow functions *********
+// this = <this of surrounding function (lexical this)>
+
+// 4) Event Listener
+// this = >DOM element that the handler is attached to>
+
+// ******** 'THIS' does NOT point to the function itself, and also NOT the its variable environment!
+
+/////////////////////////////////////////
+// 'THIS' keyword:
+/////////////////////////////////////////
+// this shows the global 'window' object in the DevConsole
+// console.log(this);
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  // console.log(this);
+};
+calcAge(1991);
+
+// ARROW FUNCTION: uses the 'lexicon' keyword from the GLOBAL SCOPE... IN THIS EXAMPLE IT IS THE 'console.log(this);' above
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calcAge(1980);
+
+//*************** */
+// WILL LOG THE OBJECT THAT IS CALLING THE METHOD.. IN THIS CASE IT IS THE 'jonas' object:
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year); // 46
+  },
+};
+jonas.calcAge();
+
 // EXAMPLE:
-var numProducts = 10;
+const matilda = {
+  year: 2017,
+};
 
-function deleteShoppingCart() {
-  console.log('All products have been deleted!');
-}
+// function is just a value
+matilda.calcAge = jonas.calcAge;
+// WRITE matilda in DevCons will show method from jonas object
+matilda.calcAge(); // # -> 20, which is 2037 - 2017
 
-var x = 1;
-let y = 2;
-const z = 3;
-
-console.log(x === window.x);
-console.log(x === window.y);
-console.log(x === window.z);
+const f = jonas.calcAge;

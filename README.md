@@ -63,3 +63,4 @@
 - Review of JS behind the hood, largely theory-based
 - Reviewed Hoisting
 - typing 'window' in the Dev Console shows all the properties of an element
+- 'THIS' keyword
