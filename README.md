@@ -60,4 +60,5 @@
 
 ##### SECTION 8: How JavaScript works behind the scenes
 
--
+- Review of JS behind the hood, largely theory-based
+- Reviewed Hoisting
