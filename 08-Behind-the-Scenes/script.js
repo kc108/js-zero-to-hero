@@ -133,38 +133,112 @@
 // this shows the global 'window' object in the DevConsole
 // console.log(this);
 
-const calcAge = function (birthYear) {
-  console.log(2037 - birthYear);
-  // console.log(this);
-};
-calcAge(1991);
+// const calcAge = function (birthYear) {
+//   console.log(2037 - birthYear);
+//   // console.log(this);
+// };
+// calcAge(1991);
 
-// ARROW FUNCTION: uses the 'lexicon' keyword from the GLOBAL SCOPE... IN THIS EXAMPLE IT IS THE 'console.log(this);' above
-const calcAgeArrow = birthYear => {
-  console.log(2037 - birthYear);
-  console.log(this);
-};
-calcAge(1980);
+// // ARROW FUNCTION: uses the 'lexicon' keyword from the GLOBAL SCOPE... IN THIS EXAMPLE IT IS THE 'console.log(this);' above
+// const calcAgeArrow = birthYear => {
+//   console.log(2037 - birthYear);
+//   console.log(this);
+// };
+// calcAge(1980);
 
 //*************** */
-// WILL LOG THE OBJECT THAT IS CALLING THE METHOD.. IN THIS CASE IT IS THE 'jonas' object:
+// // WILL LOG THE OBJECT THAT IS CALLING THE METHOD.. IN THIS CASE IT IS THE 'jonas' object:
+// const jonas = {
+//   year: 1991,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2037 - this.year); // 46
+//   },
+// };
+// jonas.calcAge();
+
+// // EXAMPLE:
+// const matilda = {
+//   year: 2017,
+// };
+
+// // function is just a value
+// matilda.calcAge = jonas.calcAge;
+// // WRITE matilda in DevCons will show method from jonas object
+// matilda.calcAge(); // # -> 20, which is 2037 - 2017
+
+// const f = jonas.calcAge;
+
+//////////////////////////////////////////////
+// Regular Functions vs. Arrow Functions
+//////////////////////////////////////////////
+
+// this is an OBJECT LITERAL NOT AN OBJECT
 const jonas = {
+  firstName: 'Jonas',
   year: 1991,
   calcAge: function () {
-    console.log(this);
+    // console.log(this);
     console.log(2037 - this.year); // 46
+
+    // ******* SOLUTION 1 *******
+    // const self = this; // self or that => this is a way to solve the way to go around and not get UNDEFINED.. however the better solution is to do an ARROW FUNCTION
+    // const isMillenial = function () {
+    //   // console.log(this); // this is UNDEFINED
+    //   console.log(self);
+    //   //   console.log(this.year >= 1981 && this.year <= 1996);
+    //   // };
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    // };
+
+    // ***** SOLUTION 2 *******
+    // const self = this; // self or that => this is a way to solve the way to go around and not get UNDEFINED.. however the better solution is to do an ARROW FUNCTION
+
+    const isMillenial = () => {
+      // console.log(this); // this is UNDEFINED
+      console.log(this);
+      //   console.log(this.year >= 1981 && this.year <= 1996);
+      // };
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+
+    isMillenial();
+  },
+
+  // DON'T USE THIS:
+  //   greet: () =>
+  //   console.log(this); // will display the 'window' object in the devConsole
+  //   console.log(`Hey, ${this.firstName}`),
+  // };
+
+  // ** USE THIS **
+  greet: function () {
+    console.log(this);
+    console.log(`Hey ${this.firstName}`);
   },
 };
+jonas.greet();
 jonas.calcAge();
 
-// EXAMPLE:
-const matilda = {
-  year: 2017,
+// jonas.greet(); // this will be result in UNDEFINED with an ARROW FUNCTION because it takes it from the GLOBAL SCOPE
+// console.log(this.firstName); // this will ALSO be UNDEFINED
+// var creates properties on the GLOBAL object, so this is easy to introduce bugs
+
+// BEST PRACTICE: never use an arrow function as a method.. !!
+// then you never have to think about what type of function to use
+
+// ARGUMENTS KEYWORD
+// ARGUMENTS KEYWORD only works with the FUNCTION KEYWORD, NOT the ArrowFunction Keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
+addExpr(2, 5);
+addExpr(2, 5, 8, 12); // #-> 2, 5, 8, 12
 
-// function is just a value
-matilda.calcAge = jonas.calcAge;
-// WRITE matilda in DevCons will show method from jonas object
-matilda.calcAge(); // # -> 20, which is 2037 - 2017
-
-const f = jonas.calcAge;
+// this will NOT log the extra parameters like the FUNCTION expression above, it does not work with ES6, arrow functions
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addArrow(2, 5, 8); // #-> UNCAUGHT REFERENCE ERROR
