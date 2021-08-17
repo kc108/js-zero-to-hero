@@ -51,10 +51,53 @@
 // }
 
 // HOISTING AND TDZ PRACTICE
-console.log(me);
-console.log(job);
-console.log(year);
+// console.log(me);
+// console.log(job);
+// console.log(year);
 
-var me = 'Jonas';
-let job = 'teacher';
-const year = 1991;
+// var me = 'Jonas';
+// let job = 'teacher';
+// const year = 1991;
+
+// // FUNCTIONS
+// console.log(addDecl(2, 3)); // WORKS
+// console.log(addExpr(2, 3)); // IN TDZ (Temporal Dead Zone)
+// console.log(addArrow(2, 3)); // IN TDZ (Temporal Dead Zone)
+// declaring function with var would be 'UNDEFINED'
+
+// function addDecl(a, b) {
+//   return a + b;
+// }
+
+// const addExpr = function (a, b) {
+//   return a + b;
+// };
+
+// const addArrow = (a, b) => a + b;
+
+// EXAMPLE:
+// this will result in it console.log(ging) 'All products deleted!' because of HOISTING.
+// this is a COMMON BUG in large applications
+
+// if (!numProducts) deleteShoppingCart();
+
+// var numProducts = 10;
+
+// function deleteShoppingCart() {
+//   console.log('All products deleted!');
+// }
+
+// EXAMPLE:
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log('All products have been deleted!');
+}
+
+var x = 1;
+let y = 2;
+const z = 3;
+
+console.log(x === window.x);
+console.log(x === window.y);
+console.log(x === window.z);
