@@ -246,20 +246,66 @@
 //////////////////////////////////////////////
 // 99.) Primitives vs. Objects
 //////////////////////////////////////////////
-// EXAMPLE: PRIMITIVES
-let age = 30;
-let oldAge = age;
-age = 31;
-console.log(age);
-console.log(oldAge);
+// // EXAMPLE: PRIMITIVES
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age);
+// console.log(oldAge);
 
-const me = {
-  name: 'Jonas',
-  age: 30,
+// const me = {
+//   name: 'Jonas',
+//   age: 30,
+// };
+
+// // ***** SOURCE OF CONFUSION *****
+// const friend = me;
+// friend.age = 27;
+// console.log('Friend:', friend); // both of these have the age: 27
+// console.log('Me', me); // both of these have the age: 27
+
+//////////////////////////////////////////////
+// 99.) Primitives vs. Objects EXAMPLES
+//////////////////////////////////////////////
+// PRIMITIVE TYPES
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName); // Davis Williams
+// keeps a reference position on where it is stored in the HEAP
+
+// REFERENCE TYPES
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
 };
 
-// ***** SOURCE OF CONFUSION *****
-const friend = me;
-friend.age = 27;
-console.log('Friend:', friend); // both of these have the age: 27
-console.log('Me', me); // both of these have the age: 27
+// LINE 283-284 BOTH STORE THE SAME INFORMATION OF THE ADDRESS IN THE HEAP
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage:', jessica);
+console.log('After marriage:', marriedJessica);
+
+// cannot do the following
+// marriedJessica = {}; // because it is stored in a different area of memory
+
+// COPYING OBJECTS
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  // an array is actually an OBJECT
+  family: ['Alice', 'Bob'],
+};
+
+// *** THIS WILL CREATE A COPY OF THE OBJECT ***
+// this only works on the first level, otherwise called a shallow copy.. a deep copy would copy everything
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+console.log('Before marriage:', jessica2);
+console.log('After marriage:', jessicaCopy);
+
+// MANIPULATING AN OBJECT IN AN OBJECT SINCE THE 'family is an array
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');

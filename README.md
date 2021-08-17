@@ -77,3 +77,7 @@
 
 - \*\*\* YOU CAN CHANGE 'const' VARIABLES WHEN USING REFERENCE VALUES !!!
 - ** 'const' variable is ONLY immutable with PRIMITIVE VALUES \_**
+
+---
+
+#### Merging two Objects Using 'Object.assign({})
