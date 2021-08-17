@@ -12,6 +12,10 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -27,3 +31,54 @@ const restaurant = {
     },
   },
 };
+
+const arr = [2, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
+
+const [x, y, z] = arr;
+console.log(x, y, z); // 2 3 4
+console.log(arr);
+
+// const [first, second] = restaurant.categories;
+// console.log(first, second); // Italian Pizzeria
+
+// say you want the first and third
+// const [first, , second] = restaurant.categories;
+// console.log(first, second); // Italian Vegetarian
+
+//
+let [main, , secondary] = restaurant.categories;
+console.log(main, secondary); // Italian Vegetarian
+
+// WITHOUT DESTRUCTURING: Switching Variables
+// const temp = main;
+// main = secondary;
+// secondary = temp;
+// console.log(main, secondary);
+
+// DESTRUCTURING
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
+
+///////////////////////////////////
+// DESTRUCTURING EXAMPLE
+///////////////////////////////////
+// console.log(restaurant.order(2, 0)); // "Garlic Bread", "Pizza"
+
+// RECEIVE 2 RETURN VALUES FROM A FUNCTION
+const [starter, mainCourse] = restaurant.order(2, 0);
+console.log(starter, mainCourse); // "Garlic Bread", "Pizza"
+
+// NESTED ARRAY DESTRUCTURING
+const nested = [2, 4, [5, 6]];
+// const [i, , j] = nested;
+
+// console.log(i, j); // 2 [5, 6]
+const [i, , [j, k]] = nested;
+console.log(i, j, k); // 2 5 6
+
+// DEFAULT VALUES
+const [p = 1, q = 1, r = 1] = [8];
+console.log(p, q, r);

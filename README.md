@@ -81,3 +81,9 @@
 ---
 
 #### Merging two Objects Using 'Object.assign({})
+
+---
+
+##### SECTION 9: Data Structures
+
+- Destructuring
