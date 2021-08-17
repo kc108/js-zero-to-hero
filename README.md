@@ -64,3 +64,16 @@
 - Reviewed Hoisting
 - typing 'window' in the Dev Console shows all the properties of an element
 - 'THIS' keyword
+- Primitives, Objects and JS Engine
+
+---
+
+- Primitives: number, string, boolean, undefined, null, symbol, BigInt
+- Objects (Reference types): Object literal, arrays, function.. and many more
+
+- JS Engine: Two Components: Call Stack and the Heap...
+- 1.) All Objects are stored in the 'Heap'
+- 2.) Primitives are stored in the 'Call Stack' because this is where Execution Context run
+
+- \*\*\* YOU CAN CHANGE 'const' VARIABLES WHEN USING REFERENCE VALUES !!!
+- ** 'const' variable is ONLY immutable with PRIMITIVE VALUES \_**

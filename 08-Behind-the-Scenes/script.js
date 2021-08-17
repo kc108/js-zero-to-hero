@@ -244,5 +244,22 @@
 // addArrow(2, 5, 8); // #-> UNCAUGHT REFERENCE ERROR
 
 //////////////////////////////////////////////
-// TODO: 99.) Primitives vs. Objects
+// 99.) Primitives vs. Objects
 //////////////////////////////////////////////
+// EXAMPLE: PRIMITIVES
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+
+const me = {
+  name: 'Jonas',
+  age: 30,
+};
+
+// ***** SOURCE OF CONFUSION *****
+const friend = me;
+friend.age = 27;
+console.log('Friend:', friend); // both of these have the age: 27
+console.log('Me', me); // both of these have the age: 27
