@@ -22,6 +22,11 @@ const restaurant = {
     );
   },
 
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -202,16 +207,16 @@ const restaurant = {
 //////////////////////////////////////////
 // SPREAD OPERATOR
 //////////////////////////////////////////
-const arr = [7, 8, 9];
-const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArray);
+// const arr = [7, 8, 9];
+// const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArray);
 
 ///////////////////////////////////////////
 // NOTICE DIFFERENCES
 ///////////////////////////////////////////
-const newArr = [1, 2, ...arr];
-console.log(newArr); // [1, 2, 7, 8, 9]
-console.log(...newArr); // 1 2 7 8 9
+// const newArr = [1, 2, ...arr];
+// console.log(newArr); // [1, 2, 7, 8, 9]
+// console.log(...newArr); // 1 2 7 8 9
 
 const newMenu = [...restaurant.mainMenu, 'Gnocci'];
 console.log(newMenu); // expands the previous array
@@ -258,3 +263,52 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurantCopy.name); // Ristorante Roma
 console.log(restaurant.name); // Classico Italiano
+
+///////////////////////////////////////////
+// REST PATTERN AND PARAMETERS
+///////////////////////////////////////////
+// REST PATTERN: does the OPPOSITE of the Spread Operator
+
+// SPREAD, because on the RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
+
+// REST syntax: because it is on the LEFT side of the = SIGN
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others); // [3, 4, 5]
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+// ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
+
+// OBJECTS
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays); // Creates an object just for the weekdays above for Thursday and Friday, and Saturday is it's own OBJECT
+
+// 2.) Functions - rest parameters
+const add = function (...numbers) {
+  console.log(numbers); // [2, 3] // [5, 3, 7, 2] // ETC
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers;
+    numbers[i];
+    console.log(sum);
+  }
+};
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+add(...x);
+console.log(x);
+
+////////////////////////////////////////
+// see above restaurant OBJECT FOR REVIEW
+////////////////////////////////////////
+// EXAMPLE REST OPERATORS ON RESTAURANT
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// mushrooms
+// ['onions', 'olives', 'spinach']

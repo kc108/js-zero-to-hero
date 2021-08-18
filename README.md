@@ -89,3 +89,6 @@
 - Destructuring
 
 - spread operator works with everything that is 'iterables'. This does NOT include objects.
+- Reviewed Rest Pattern
+  rest pattern is on the left side of =
+  spread pattern is on the right side of the =
