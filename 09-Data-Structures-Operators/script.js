@@ -359,3 +359,14 @@ if (restaurant.orderPizza) {
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // mushrooms
 // ["spinach"]
+
+////////////////////////////////////////////////
+// TODO: The Nullish Coalescing Order (??)
+////////////////////////////////////////////////
+// restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests); // 10
+
+// NULLISH: NULL and UNDEFINED (NOT 0 or ' ')... only if 'restaurant.numGuests' is UNDEFINED will this work
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect); // 23
