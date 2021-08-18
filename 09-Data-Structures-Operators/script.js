@@ -312,3 +312,50 @@ console.log(x);
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 // mushrooms
 // ['onions', 'olives', 'spinach']
+
+////////////////////////////////////////
+// && AND || : OPERATOR for Short Circuiting
+////////////////////////////////////////
+//console.log(--- or ---);
+// Use ANY data type, return ANY data type, short-circuit evaluation
+console.log(3 || 'Jonas'); // 3.. doesn't have to be a BOOLEAN PROPERTY
+
+// short circuiting if the 1st value is a truthy value it will return the Truthy value.
+
+console.log(true || 0); // true
+console.log(undefined || null); // null
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello because it is Truthy
+
+// since 'restaurant.numGuests' is UNDEFINED the 'console.log' returns 10
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// If, HOWEVER you set the following: then the result will be 23.
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+// INSTEAD we can USE SHORT-CIRCUITING ****** way EASIER WAY
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2); // 23
+
+////////////////////////////////////////////////
+// AND OPERATOR: will only return if both are
+////////////////////////////////////////////////
+console.log('-- and --');
+console.log(0 && 'Jonas'); // returns FALSY value, OPPOSITE of OR which SHORT CIRCUITS when it is a truthy value CONSOLE.LOG = 0
+console.log(7 && 'Jonas'); // Console.log = Jonas
+console.log('Hello' && 23 && null && 'jonas'); // null
+
+// PRACTICAL EXAMPLE
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+// ["spinach"] // checkto see if there is an order for 'orderPizza' and if there is then returns
+// mushrooms
+// ["spinach"]
+
+// you CAN DO IT THIS WAY AS WELL
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// mushrooms
+// ["spinach"]
