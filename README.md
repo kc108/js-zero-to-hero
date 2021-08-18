@@ -87,3 +87,5 @@
 ##### SECTION 9: Data Structures
 
 - Destructuring
+
+- spread operator works with everything that is 'iterables'. This does NOT include objects.
