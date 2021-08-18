@@ -1,84 +1,194 @@
 'use strict';
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// // Data needed for a later exercise
+// const flights =
+//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-// Data needed for first part of the section
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+// // Data needed for first part of the section
+// const restaurant = {
+//   foodName: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+// };
+
+// // destructuring OBJECTS: objects order does NOT matter like an ARRAY
+// const { foodName, openingHours, categories } = restaurant;
+// console.log(foodName, openingHours, categories);
+
+// //////////////////////////
+
+// const arr = [2, 3, 4];
+// const a = arr[0];
+// const b = arr[1];
+// const c = arr[2];
+
+// const [x, y, z] = arr;
+// console.log(x, y, z); // 2 3 4
+// console.log(arr);
+
+// // const [first, second] = restaurant.categories;
+// // console.log(first, second); // Italian Pizzeria
+
+// // say you want the first and third
+// // const [first, , second] = restaurant.categories;
+// // console.log(first, second); // Italian Vegetarian
+
+// //
+// let [main, , secondary] = restaurant.categories;
+// console.log(main, secondary); // Italian Vegetarian
+
+// // WITHOUT DESTRUCTURING: Switching Variables
+// // const temp = main;
+// // main = secondary;
+// // secondary = temp;
+// // console.log(main, secondary);
+
+// // DESTRUCTURING
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
+
+// ///////////////////////////////////
+// // DESTRUCTURING EXAMPLE
+// ///////////////////////////////////
+// // console.log(restaurant.order(2, 0)); // "Garlic Bread", "Pizza"
+
+// // RECEIVE 2 RETURN VALUES FROM A FUNCTION
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse); // "Garlic Bread", "Pizza"
+
+// // NESTED ARRAY DESTRUCTURING
+// const nested = [2, 4, [5, 6]];
+// // const [i, , j] = nested;
+
+// // console.log(i, j); // 2 [5, 6]
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k); // 2 5 6
+
+// // DEFAULT VALUES
+// const [p = 1, q = 1, r = 1] = [8];
+// console.log(p, q, r);
+
+///////////////////////////////////////
+// destructuring
+///////////////////////////////////////
+const alphabet = ['A', 'B', 'C', 'D', 'E', 'F'];
+const numbers = ['1', '2', '3', '4', '5', '6'];
+
+// NOT DESTRUCTURED
+// const a = alphabet[0];
+
+// DESTRUCTURING & SPREAD OPERATOR
+//const [a, , c, ...rest] = alphabet;
+
+// first way to do
+// const newArray = [...alphabet, ...numbers];
+// console.log(newArray);
+
+// // second way to do
+// const [a, , c, ...rest] = alphabet;
+
+// const newArray = alphabet.concat(numbers);
+// console.log(newArray);
+
+// console.log(a); // A
+// console.log(c); // C
+// console.log(rest); // ["D", "E", "F"]
+
+// // destructuring continued
+// function sumAndMultiply(a, b) {
+//   return [a + b, a * b, a / b];
+// }
+
+// const array = sumAndMultiply(2, 3);
+// console.log(array); // 2 [5, 6]
+
+// // SETTING DEFAULT VALUES
+// const [sum, multiply, division = 'No division'] = sumAndMultiply(2, 3);
+// console.log(sum); // 5
+// console.log(multiply); // 6
+// console.log(division); // 0.666666
+
+//////////////////////////////////////
+// DESTRUCTURING OBJECTS
+//////////////////////////////////////
+const personOne = {
+  name: 'Kim',
+  age: 108,
+  favoriteFood: 'Rice',
+  address: {
+    city: 'Everywhere',
+    state: 'Somewhere in the galaxy',
   },
 };
 
-const arr = [2, 3, 4];
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+const personTwo = {
+  age: 32,
+  favoriteFood: 'Watermelon',
+};
 
-const [x, y, z] = arr;
-console.log(x, y, z); // 2 3 4
-console.log(arr);
+///////////////////////////////////////
+// DESTRUCTURING INSIDE OF A FUNCTION
+///////////////////////////////////////
+// NON.. DESTRUCTURED
+// function printUser(user) {
+//   console.log(`Name is: ${user.name}. Age is ${user.age}`);
+// }
 
-// const [first, second] = restaurant.categories;
-// console.log(first, second); // Italian Pizzeria
+// printUser(personOne);
 
-// say you want the first and third
-// const [first, , second] = restaurant.categories;
-// console.log(first, second); // Italian Vegetarian
+///////////////////////////////////////
+// DESTRUCTURED FUNCTION
+///////////////////////////////////////
+function printUser({ name, age, favoriteFood = 'Watermelon' }) {
+  console.log(`Name is: ${name}. Food is ${favoriteFood}. Age is ${age}.`);
+}
 
-//
-let [main, , secondary] = restaurant.categories;
-console.log(main, secondary); // Italian Vegetarian
+printUser(personOne);
 
-// WITHOUT DESTRUCTURING: Switching Variables
-// const temp = main;
-// main = secondary;
-// secondary = temp;
-// console.log(main, secondary);
+//  *********************** COMBINING TWO OBJECTS **************
+//////////////////////////////////////////////////
+const personThree = { ...personOne, ...personTwo };
 
-// DESTRUCTURING
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+// DESTRUCTURING NEW OBJECT ***********************
+//////////////////////////////////////////////////
+const {
+  name: firstName,
+  address: { city },
+} = personTwo;
 
-///////////////////////////////////
-// DESTRUCTURING EXAMPLE
-///////////////////////////////////
-// console.log(restaurant.order(2, 0)); // "Garlic Bread", "Pizza"
+console.log(firstName);
+console.log(city);
 
-// RECEIVE 2 RETURN VALUES FROM A FUNCTION
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse); // "Garlic Bread", "Pizza"
+// the 'name' variable gets mapped to 'firstName'
+// const { name: firstName = 'john', age, favoriteFood = 'Rice' } = personTwo;
 
-// NESTED ARRAY DESTRUCTURING
-const nested = [2, 4, [5, 6]];
-// const [i, , j] = nested;
+// console.log(name);
+// console.log(age);
 
-// console.log(i, j); // 2 [5, 6]
-const [i, , [j, k]] = nested;
-console.log(i, j, k); // 2 5 6
+// const { name: firstName, ...rest } = personTwo;
 
-// DEFAULT VALUES
-const [p = 1, q = 1, r = 1] = [8];
-console.log(p, q, r);
+// you can map 'name' to 'firstName' by doing the following:
+// const { name: firstName, age, favoriteFood = 'Rice' } = personTwo;
+// console.log(favoriteFood); // Watermelon
+//console.log(rest); // logs whole OBJECT
