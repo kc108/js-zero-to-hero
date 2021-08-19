@@ -94,4 +94,6 @@
   spread pattern is on the right side of the =
 - short circuiting if the 1st value is a truthy value it will return the Truthy value.
 
-- Review Object.values()
+- Reviewed Object.values() -> RETURNS the values from [key, value] pairs
+- Reviewed Object.entries() -> RETURNS the [key, value] pairs of an object
+- Coding Challenge #2 -> REVIEWED \*\*\*

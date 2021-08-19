@@ -650,4 +650,39 @@ const game = {
   },
 };
 
-1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+// *** entries() RETURNS an objects [key, value] pairs ***
+// 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+// RETURNS:
+// Goal 1: Lewandowski
+// Goal 2: Gnarby
+// Goal 3: Lewandowski
+// Goal 4: Hummels
+for (const [i, player] of game.scored.entries())
+  console.log(`Goal ${i + 1}: ${player}`);
+
+// 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+let average = 0;
+const odds = Object.values(game.odds);
+
+for (const odd of odds) average += odd;
+console.log(average);
+
+// if you just do 'average /= odds' it returns NaN because you are dividing by the entire array
+average /= odds.length;
+console.log(average); // 3.693333333334
+
+// 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+// Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+
+// entries() RETURNS pairs of [key, value] pairs
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamString = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamString} ${odd}`);
+}
+
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
