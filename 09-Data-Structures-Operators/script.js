@@ -798,3 +798,49 @@ console.log(new Set('jonasSchmedtmann').size); // 12
 ///////////////////////////////////////////////
 // ES6 - 2 TYPES OF NEW DATA TYPES: sets and map
 ///////////////////////////////////////////////
+// MAPS: MAPS VALUES TO KEYS, BIG DIFFERENCE BETWEEN OBJECTS IS THE KEYS CAN BE ANY TYPE OF KEY (CAN BE OTHER MAPS, ARRAYS, OBJECTS, ETC...)
+const restaurant = new Map();
+restaurant.set('name', 'Classico Italiano');
+restaurant.set(1, 'Firenze, Italy');
+console.log(restaurant.set(2, 'Lisbon, Portugal'));
+// Map(3) {"name" => "Classico Italiano", 1 => "Fireze, Italy", 2 => "Lisbon, Portugal"}
+
+restaurant
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open: :D')
+  .set(false, 'We are closed :(');
+
+console.log(restaurant.get('name')); // Classico Italiano
+console.log(restaurant.get(true)); // We are open: :D
+console.log(restaurant.get(1)); // Firenze, Italy
+
+// Can have Boolean keys
+const time = 21;
+console.log(
+  restaurant.get(
+    time > restaurant.get('open') && time < restaurant.get('close')
+  )
+);
+// We are open :D
+
+// METHODS AVAILABLE ON MAPS
+// check if a map contains a certain key
+console.log(restaurant.has('categories')); // true
+restaurant.delete(2);
+// restaurant.clear(); // Map(0) {}
+console.log(restaurant);
+console.log(restaurant.size); // 7
+
+// CAN USE OBJECTS AS MAP KEYS
+
+const arr = [1, 2];
+restaurant.set(arr, 'Test');
+restaurant.set(document.querySelector('h1'), 'Heading');
+
+console.log(restaurant); // 8 objects shown
+console.log(restaurant.size); // 8
+
+console.log(restaurant.get(arr)); // Test
+// this adds a 9th object // 8 : {h1 => "Heading"}
