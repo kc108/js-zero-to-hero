@@ -60,6 +60,41 @@ const restaurant = {
   },
 };
 
+////////////////////////////////////////////
+// OPTIONAL CHAINING: ES6 FEATURE
+////////////////////////////////////////////
+// UNDEFINED since 'mon' does NOT exist
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open); // this one is an error
+
+// WITH OPTIONAL CHAINING :
+// *** OPTIONAL CHAINING: checks if the data on the left exists. ***
+// ONLY IF the properties before the '?' is read exist then it will log it to the console, if NOT then UNDEFINED will be returned
+console.log(restaurant.openingHours.mon?.open); // 'undefined' UNLIKE above which results in an ERROR
+console.log(restaurant.openingHours?.mon?.open); // this way will prevent even further errors
+
+// EXAMPLE
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`); // 0 is a Falsy value so it shows Sat is closed, UNLESS we use the OPTIONAL CHAINING THAT IS AVAILABLE IN ES6
+}
+
+// OPTIONAL CHAINING works on METHODS
+console.log(restaurant.order?.(0, 1) ?? 'Method does NOT exist'); // ["Focaccia", "Pasta"]
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does NOT exist'); // "Method does not exist"
+
+// OPTIONAL CHAINING ON ARRAYS
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+
+console.log(users[0]?.name ?? 'User array empty');
+
+// INSTEAD OF THIS:
+if (users.length > 0) console.log(users[0].name);
+else console.log('user array is empty');
+
 // // // destructuring OBJECTS: objects order does NOT matter like an ARRAY
 // // const { foodName, openingHours, categories } = restaurant;
 // // console.log(foodName, openingHours, categories);
@@ -248,269 +283,269 @@ console.log(mainMenuCopy);
 // console.log(menu);
 //['Pizza', 'Pasta', 'Risotto', 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
 
-// Iterables: arrays, strings, maps, sets. NOT objects. Spread operators work on ALL ITERABLES.
-const string = 'Jonas';
-const letters = [...string, ' ', 'S.'];
-console.log(letters);
-// ['J', 'o', 'n', 'a', 's', ' ', 'S']
+// // Iterables: arrays, strings, maps, sets. NOT objects. Spread operators work on ALL ITERABLES.
+// const string = 'Jonas';
+// const letters = [...string, ' ', 'S.'];
+// console.log(letters);
+// // ['J', 'o', 'n', 'a', 's', ' ', 'S']
 
-console.log(...string); // J o n a s
-// CANNOT do ${...string}
+// console.log(...string); // J o n a s
+// // CANNOT do ${...string}
 
-///////////////////////////////////////////
-//
-///////////////////////////////////////////
-const ingredients = [
-  //   prompt("Let's make pasta! Ingredient 1?"),
-  //   prompt('Ingredient 2?'),
-  //   prompt('Ingredient 3?'),
-];
+// ///////////////////////////////////////////
+// //
+// ///////////////////////////////////////////
+// const ingredients = [
+//   //   prompt("Let's make pasta! Ingredient 1?"),
+//   //   prompt('Ingredient 2?'),
+//   //   prompt('Ingredient 3?'),
+// ];
 
-console.log(ingredients); // Here is your delicious pasta with <>, <> and <>.
+// console.log(ingredients); // Here is your delicious pasta with <>, <> and <>.
 
-restaurant.orderPasta(...ingredients);
+// restaurant.orderPasta(...ingredients);
 
-// SPREAD OPERATOR ALSO WORKS ON OBJECTS EVEN THOUGHT THEY ARE NOT ITERABLES
-// OBJECTS
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
-console.log(newRestaurant);
-// this 'console.log' all of above plus the two add above
+// // SPREAD OPERATOR ALSO WORKS ON OBJECTS EVEN THOUGHT THEY ARE NOT ITERABLES
+// // OBJECTS
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+// console.log(newRestaurant);
+// // this 'console.log' all of above plus the two add above
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Ristorante Roma';
-console.log(restaurantCopy.name); // Ristorante Roma
-console.log(restaurant.name); // Classico Italiano
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorante Roma';
+// console.log(restaurantCopy.name); // Ristorante Roma
+// console.log(restaurant.name); // Classico Italiano
 
-///////////////////////////////////////////
-// REST PATTERN AND PARAMETERS
-///////////////////////////////////////////
-// REST PATTERN: does the OPPOSITE of the Spread Operator
+// ///////////////////////////////////////////
+// // REST PATTERN AND PARAMETERS
+// ///////////////////////////////////////////
+// // REST PATTERN: does the OPPOSITE of the Spread Operator
 
-// SPREAD, because on the RIGHT side of =
-const arr = [1, 2, ...[3, 4]];
+// // SPREAD, because on the RIGHT side of =
+// const arr = [1, 2, ...[3, 4]];
 
-// REST syntax: because it is on the LEFT side of the = SIGN
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others); // [3, 4, 5]
+// // REST syntax: because it is on the LEFT side of the = SIGN
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others); // [3, 4, 5]
 
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood);
-// ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood);
+// // ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
 
-// OBJECTS
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays); // Creates an object just for the weekdays above for Thursday and Friday, and Saturday is it's own OBJECT
+// // OBJECTS
+// // const { sat, ...weekdays } = restaurant.openingHours;
+// // console.log(weekdays); // Creates an object just for the weekdays above for Thursday and Friday, and Saturday is it's own OBJECT
 
-// 2.) Functions - rest parameters
-const add = function (...numbers) {
-  console.log(numbers); // [2, 3] // [5, 3, 7, 2] // ETC
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers;
-    numbers[i];
-    console.log(sum);
-  }
-};
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 2, 5, 3, 2, 1, 4);
+// // 2.) Functions - rest parameters
+// const add = function (...numbers) {
+//   console.log(numbers); // [2, 3] // [5, 3, 7, 2] // ETC
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers;
+//     numbers[i];
+//     console.log(sum);
+//   }
+// };
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 5, 3, 2, 1, 4);
 
-const x = [23, 5, 7];
-add(...x);
-console.log(x);
-
-////////////////////////////////////////
-// see above restaurant OBJECT FOR REVIEW
-////////////////////////////////////////
-// EXAMPLE REST OPERATORS ON RESTAURANT
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-// mushrooms
-// ['onions', 'olives', 'spinach']
+// const x = [23, 5, 7];
+// add(...x);
+// console.log(x);
 
 // ////////////////////////////////////////
-// // && AND || : OPERATOR for Short Circuiting
+// // see above restaurant OBJECT FOR REVIEW
 // ////////////////////////////////////////
-// //console.log(--- or ---);
-// // Use ANY data type, return ANY data type, short-circuit evaluation
-// console.log(3 || 'Jonas'); // 3.. doesn't have to be a BOOLEAN PROPERTY
+// // EXAMPLE REST OPERATORS ON RESTAURANT
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// // mushrooms
+// // ['onions', 'olives', 'spinach']
 
-// // short circuiting if the 1st value is a truthy value it will return the Truthy value.
+// // ////////////////////////////////////////
+// // // && AND || : OPERATOR for Short Circuiting
+// // ////////////////////////////////////////
+// // //console.log(--- or ---);
+// // // Use ANY data type, return ANY data type, short-circuit evaluation
+// // console.log(3 || 'Jonas'); // 3.. doesn't have to be a BOOLEAN PROPERTY
 
-// console.log(true || 0); // true
-// console.log(undefined || null); // null
-// console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello because it is Truthy
+// // // short circuiting if the 1st value is a truthy value it will return the Truthy value.
 
-// // since 'restaurant.numGuests' is UNDEFINED the 'console.log' returns 10
+// // console.log(true || 0); // true
+// // console.log(undefined || null); // null
+// // console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello because it is Truthy
+
+// // // since 'restaurant.numGuests' is UNDEFINED the 'console.log' returns 10
+// // // const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// // // console.log(guests1);
+
+// // // If, HOWEVER you set the following: then the result will be 23.
+// // restaurant.numGuests = 23;
 // // const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 // // console.log(guests1);
 
-// // If, HOWEVER you set the following: then the result will be 23.
-// restaurant.numGuests = 23;
-// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-// console.log(guests1);
+// // // INSTEAD we can USE SHORT-CIRCUITING ****** way EASIER WAY
+// // const guest2 = restaurant.numGuests || 10;
+// // console.log(guest2); // 23
 
-// // INSTEAD we can USE SHORT-CIRCUITING ****** way EASIER WAY
-// const guest2 = restaurant.numGuests || 10;
-// console.log(guest2); // 23
+// // ////////////////////////////////////////////////
+// // // AND OPERATOR: will only return if both are
+// // ////////////////////////////////////////////////
+// // console.log('-- and --');
+// // console.log(0 && 'Jonas'); // returns FALSY value, OPPOSITE of OR which SHORT CIRCUITS when it is a truthy value CONSOLE.LOG = 0
+// // console.log(7 && 'Jonas'); // Console.log = Jonas
+// // console.log('Hello' && 23 && null && 'jonas'); // null
 
-// ////////////////////////////////////////////////
-// // AND OPERATOR: will only return if both are
-// ////////////////////////////////////////////////
-// console.log('-- and --');
-// console.log(0 && 'Jonas'); // returns FALSY value, OPPOSITE of OR which SHORT CIRCUITS when it is a truthy value CONSOLE.LOG = 0
-// console.log(7 && 'Jonas'); // Console.log = Jonas
-// console.log('Hello' && 23 && null && 'jonas'); // null
+// // // PRACTICAL EXAMPLE
+// // if (restaurant.orderPizza) {
+// //   restaurant.orderPizza('mushrooms', 'spinach');
+// // }
+// // // ["spinach"] // checkto see if there is an order for 'orderPizza' and if there is then returns
+// // // mushrooms
+// // // ["spinach"]
 
-// // PRACTICAL EXAMPLE
-// if (restaurant.orderPizza) {
-//   restaurant.orderPizza('mushrooms', 'spinach');
-// }
-// // ["spinach"] // checkto see if there is an order for 'orderPizza' and if there is then returns
-// // mushrooms
-// // ["spinach"]
+// // // you CAN DO IT THIS WAY AS WELL
+// // restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// // // mushrooms
+// // // ["spinach"]
 
-// // you CAN DO IT THIS WAY AS WELL
-// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
-// // mushrooms
-// // ["spinach"]
+// // ////////////////////////////////////////////////
+// // // The Nullish Coalescing Order (??)
+// // ////////////////////////////////////////////////
+// // // restaurant.numGuests = 0;
+// // const guests = restaurant.numGuests || 10;
+// // console.log(guests); // 10
 
-// ////////////////////////////////////////////////
-// // The Nullish Coalescing Order (??)
-// ////////////////////////////////////////////////
-// // restaurant.numGuests = 0;
-// const guests = restaurant.numGuests || 10;
-// console.log(guests); // 10
+// // // NULLISH: NULL and UNDEFINED (NOT 0 or ' ')... only if 'restaurant.numGuests' is UNDEFINED will this work
+// // const guestCorrect = restaurant.numGuests ?? 10;
+// // console.log(guestCorrect); // 23
 
-// // NULLISH: NULL and UNDEFINED (NOT 0 or ' ')... only if 'restaurant.numGuests' is UNDEFINED will this work
-// const guestCorrect = restaurant.numGuests ?? 10;
-// console.log(guestCorrect); // 23
+// // FOR OF LOOP: can STILL be able to use 'break;' and 'continue';
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu); // ["Foccacia", "Bruschetta"...etc]
+// for (const item of menu) console.log(item); //
+// // Focaccia
+// // Bruschetta
+// // Garlic Bread
+// // Caprese Salad
+// // ...ETC
 
-// FOR OF LOOP: can STILL be able to use 'break;' and 'continue';
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu); // ["Foccacia", "Bruschetta"...etc]
-for (const item of menu) console.log(item); //
-// Focaccia
-// Bruschetta
-// Garlic Bread
-// Caprese Salad
-// ...ETC
+// // FOR ... OF LOOP
+// // If you need the index it is more of a pain, but you can get the Index
+// for (const item of menu.entries());
+// // console.log(item);
+// // [0, "Focaccia"]
+// // [1, "Bruschetta"]
+// // [2, "Garlic Bread"]
+// // etc.
 
-// FOR ... OF LOOP
-// If you need the index it is more of a pain, but you can get the Index
-for (const item of menu.entries());
-// console.log(item);
-// [0, "Focaccia"]
-// [1, "Bruschetta"]
-// [2, "Garlic Bread"]
-// etc.
+// console.log(menu.entries); // Array Iterator {}
+// // console.log([...menu.entries]); // just to look at what is in the array
 
-console.log(menu.entries); // Array Iterator {}
-// console.log([...menu.entries]); // just to look at what is in the array
+// ///////////////////////////////////////
+// // CODING CHALLENGE #1
+// ///////////////////////////////////////
+// /*
+// We're building a football betting app (soccer for my American friends 😅)!
 
-///////////////////////////////////////
-// CODING CHALLENGE #1
-///////////////////////////////////////
-/* 
-We're building a football betting app (soccer for my American friends 😅)!
+// Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
 
-Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
+// 1. Create one player array for each team (variables 'players1' and 'players2')
+// 2. The first player in any player array is the goalkeeper and the others are field players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
+// 3. Create an array 'allPlayers' containing all players of both teams (22 players)
+// 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
+// 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
+// 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
+// 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
 
-1. Create one player array for each team (variables 'players1' and 'players2')
-2. The first player in any player array is the goalkeeper and the others are field players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
-3. Create an array 'allPlayers' containing all players of both teams (22 players)
-4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
-5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
-6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
-7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
+// TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
 
-TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
+// GOOD LUCK 😀
+// */
 
-GOOD LUCK 😀
-*/
+// // const game = {
+// //   team1: 'Bayern Munich',
+// //   team2: 'Borrussia Dortmund',
+// //   players: [
+// //     [
+// //       'Neuer',
+// //       'Pavard',
+// //       'Martinez',
+// //       'Alaba',
+// //       'Davies',
+// //       'Kimmich',
+// //       'Goretzka',
+// //       'Coman',
+// //       'Muller',
+// //       'Gnarby',
+// //       'Lewandowski',
+// //     ],
+// //     [
+// //       'Burki',
+// //       'Schulz',
+// //       'Hummels',
+// //       'Akanji',
+// //       'Hakimi',
+// //       'Weigl',
+// //       'Witsel',
+// //       'Hazard',
+// //       'Brandt',
+// //       'Sancho',
+// //       'Gotze',
+// //     ],
+// //   ],
+// //   score: '4:0',
+// //   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+// //   date: 'Nov 9th, 2037',
+// //   odds: {
+// //     team1: 1.33,
+// //     x: 3.25,
+// //     team2: 6.5,
+// //   },
+// // };
 
-// const game = {
-//   team1: 'Bayern Munich',
-//   team2: 'Borrussia Dortmund',
-//   players: [
-//     [
-//       'Neuer',
-//       'Pavard',
-//       'Martinez',
-//       'Alaba',
-//       'Davies',
-//       'Kimmich',
-//       'Goretzka',
-//       'Coman',
-//       'Muller',
-//       'Gnarby',
-//       'Lewandowski',
-//     ],
-//     [
-//       'Burki',
-//       'Schulz',
-//       'Hummels',
-//       'Akanji',
-//       'Hakimi',
-//       'Weigl',
-//       'Witsel',
-//       'Hazard',
-//       'Brandt',
-//       'Sancho',
-//       'Gotze',
-//     ],
-//   ],
-//   score: '4:0',
-//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-//   date: 'Nov 9th, 2037',
-//   odds: {
-//     team1: 1.33,
-//     x: 3.25,
-//     team2: 6.5,
-//   },
-// };
+// // // 1.) create one player array for each team ('players1', 'players2')
+// // const [players1, players2] = game.players;
+// // console.log(players1, players2);
 
-// // 1.) create one player array for each team ('players1', 'players2')
-// const [players1, players2] = game.players;
-// console.log(players1, players2);
+// // // 2.)
+// // const [gk, ...fieldPlayers] = players1;
+// // console.log(gk, fieldPlayers);
 
-// // 2.)
-// const [gk, ...fieldPlayers] = players1;
-// console.log(gk, fieldPlayers);
+// // // 3.)
+// // const allPlayers = [...players1, ...players2];
+// // console.log(allPlayers);
 
-// // 3.)
-// const allPlayers = [...players1, ...players2];
-// console.log(allPlayers);
+// // // 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
+// // const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// // console.log(players1Final);
 
-// // 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
-// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-// console.log(players1Final);
+// // // 5.) 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
+// // const {
+// //   odds: { team1, x: draw, team2 },
+// // } = game;
+// // console.log(team1, draw, team2);
+// // // 1.33 3.25 6.5
 
-// // 5.) 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
-// const {
-//   odds: { team1, x: draw, team2 },
-// } = game;
-// console.log(team1, draw, team2);
-// // 1.33 3.25 6.5
+// // // 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
+// // const printGoals = function (...players) {
+// //   console.log(`${players.length} goals were scored.`);
+// // };
 
-// // 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
-// const printGoals = function (...players) {
-//   console.log(`${players.length} goals were scored.`);
-// };
+// // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+// // printGoals('Davies', 'Muller');
+// // printGoals(...game.scored);
 
-// printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
-// printGoals('Davies', 'Muller');
-// printGoals(...game.scored);
+// // //  7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
 
-// //  7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
+// // // use LOGICAL OPERATOR
+// // team1 < team2 && console.log('Team 1 is more likely to win.');
+// // team2 < team1 && console.log('Team 2 is more likely to win.');
+// // // Team 1 is more likely to win.
 
-// // use LOGICAL OPERATOR
-// team1 < team2 && console.log('Team 1 is more likely to win.');
-// team2 < team1 && console.log('Team 2 is more likely to win.');
-// // Team 1 is more likely to win.
-
-// ////////////////////////////////////////////////
-// // The Nullish Coalescing Order (??)
-// ////////////////////////////////////////////////
+// // ////////////////////////////////////////////////
+// // // The Nullish Coalescing Order (??)
+// // ////////////////////////////////////////////////
