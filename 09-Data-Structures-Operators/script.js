@@ -1,5 +1,24 @@
 'use strict';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const openingHours = {
+  // A different way to show 'Thursday'
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  // DOES NOT MAKE SENSE.. BUT just to show you can do this
+  [`day-${2 + 4}`]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // // // Data needed for a later exercise
 // // const flights =
 // //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
@@ -12,11 +31,24 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function (starterIndex, mainIndex) {
+  // ES6 enhanced object literals
+  openingHours,
+
+  //   order: function (starterIndex, mainIndex) {
+  //     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  //   },
+
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  //   orderPasta: function (ing1, ing2, ing3) {
+  //     console.log(
+  //       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+  //     );
+  //   },
+
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
@@ -25,21 +57,6 @@ const restaurant = {
   orderPizza: function (mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
-  },
-
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
   },
 };
 
@@ -227,8 +244,8 @@ const mainMenuCopy = [...restaurant.mainMenu];
 console.log(mainMenuCopy);
 
 // MERGE mainMenu and starterMenu
-const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(menu);
+// const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(menu);
 //['Pizza', 'Pasta', 'Risotto', 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
 
 // Iterables: arrays, strings, maps, sets. NOT objects. Spread operators work on ALL ITERABLES.
@@ -313,63 +330,85 @@ restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 // mushrooms
 // ['onions', 'olives', 'spinach']
 
-////////////////////////////////////////
-// && AND || : OPERATOR for Short Circuiting
-////////////////////////////////////////
-//console.log(--- or ---);
-// Use ANY data type, return ANY data type, short-circuit evaluation
-console.log(3 || 'Jonas'); // 3.. doesn't have to be a BOOLEAN PROPERTY
+// ////////////////////////////////////////
+// // && AND || : OPERATOR for Short Circuiting
+// ////////////////////////////////////////
+// //console.log(--- or ---);
+// // Use ANY data type, return ANY data type, short-circuit evaluation
+// console.log(3 || 'Jonas'); // 3.. doesn't have to be a BOOLEAN PROPERTY
 
-// short circuiting if the 1st value is a truthy value it will return the Truthy value.
+// // short circuiting if the 1st value is a truthy value it will return the Truthy value.
 
-console.log(true || 0); // true
-console.log(undefined || null); // null
-console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello because it is Truthy
+// console.log(true || 0); // true
+// console.log(undefined || null); // null
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello because it is Truthy
 
-// since 'restaurant.numGuests' is UNDEFINED the 'console.log' returns 10
+// // since 'restaurant.numGuests' is UNDEFINED the 'console.log' returns 10
+// // const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// // console.log(guests1);
+
+// // If, HOWEVER you set the following: then the result will be 23.
+// restaurant.numGuests = 23;
 // const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 // console.log(guests1);
 
-// If, HOWEVER you set the following: then the result will be 23.
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
+// // INSTEAD we can USE SHORT-CIRCUITING ****** way EASIER WAY
+// const guest2 = restaurant.numGuests || 10;
+// console.log(guest2); // 23
 
-// INSTEAD we can USE SHORT-CIRCUITING ****** way EASIER WAY
-const guest2 = restaurant.numGuests || 10;
-console.log(guest2); // 23
+// ////////////////////////////////////////////////
+// // AND OPERATOR: will only return if both are
+// ////////////////////////////////////////////////
+// console.log('-- and --');
+// console.log(0 && 'Jonas'); // returns FALSY value, OPPOSITE of OR which SHORT CIRCUITS when it is a truthy value CONSOLE.LOG = 0
+// console.log(7 && 'Jonas'); // Console.log = Jonas
+// console.log('Hello' && 23 && null && 'jonas'); // null
 
-////////////////////////////////////////////////
-// AND OPERATOR: will only return if both are
-////////////////////////////////////////////////
-console.log('-- and --');
-console.log(0 && 'Jonas'); // returns FALSY value, OPPOSITE of OR which SHORT CIRCUITS when it is a truthy value CONSOLE.LOG = 0
-console.log(7 && 'Jonas'); // Console.log = Jonas
-console.log('Hello' && 23 && null && 'jonas'); // null
+// // PRACTICAL EXAMPLE
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+// // ["spinach"] // checkto see if there is an order for 'orderPizza' and if there is then returns
+// // mushrooms
+// // ["spinach"]
 
-// PRACTICAL EXAMPLE
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach');
-}
-// ["spinach"] // checkto see if there is an order for 'orderPizza' and if there is then returns
-// mushrooms
-// ["spinach"]
+// // you CAN DO IT THIS WAY AS WELL
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// // mushrooms
+// // ["spinach"]
 
-// you CAN DO IT THIS WAY AS WELL
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
-// mushrooms
-// ["spinach"]
+// ////////////////////////////////////////////////
+// // The Nullish Coalescing Order (??)
+// ////////////////////////////////////////////////
+// // restaurant.numGuests = 0;
+// const guests = restaurant.numGuests || 10;
+// console.log(guests); // 10
 
-////////////////////////////////////////////////
-// TODO: The Nullish Coalescing Order (??)
-////////////////////////////////////////////////
-// restaurant.numGuests = 0;
-const guests = restaurant.numGuests || 10;
-console.log(guests); // 10
+// // NULLISH: NULL and UNDEFINED (NOT 0 or ' ')... only if 'restaurant.numGuests' is UNDEFINED will this work
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect); // 23
 
-// NULLISH: NULL and UNDEFINED (NOT 0 or ' ')... only if 'restaurant.numGuests' is UNDEFINED will this work
-const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect); // 23
+// FOR OF LOOP: can STILL be able to use 'break;' and 'continue';
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu); // ["Foccacia", "Bruschetta"...etc]
+for (const item of menu) console.log(item); //
+// Focaccia
+// Bruschetta
+// Garlic Bread
+// Caprese Salad
+// ...ETC
+
+// FOR ... OF LOOP
+// If you need the index it is more of a pain, but you can get the Index
+for (const item of menu.entries());
+// console.log(item);
+// [0, "Focaccia"]
+// [1, "Bruschetta"]
+// [2, "Garlic Bread"]
+// etc.
+
+console.log(menu.entries); // Array Iterator {}
+// console.log([...menu.entries]); // just to look at what is in the array
 
 ///////////////////////////////////////
 // CODING CHALLENGE #1
@@ -392,82 +431,86 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 GOOD LUCK 😀
 */
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
-// 1.) create one player array for each team ('players1', 'players2')
-const [players1, players2] = game.players;
-console.log(players1, players2);
+// // 1.) create one player array for each team ('players1', 'players2')
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
 
-// 2.)
-const [gk, ...fieldPlayers] = players1;
-console.log(gk, fieldPlayers);
+// // 2.)
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
 
-// 3.)
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers);
+// // 3.)
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
 
-// 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-console.log(players1Final);
+// // 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(players1Final);
 
-// 5.) 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-console.log(team1, draw, team2);
-// 1.33 3.25 6.5
+// // 5.) 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// console.log(team1, draw, team2);
+// // 1.33 3.25 6.5
 
-// 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
-const printGoals = function (...players) {
-  console.log(`${players.length} goals were scored.`);
-};
+// // 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
+// const printGoals = function (...players) {
+//   console.log(`${players.length} goals were scored.`);
+// };
 
-printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
-printGoals('Davies', 'Muller');
-printGoals(...game.scored);
+// printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+// printGoals('Davies', 'Muller');
+// printGoals(...game.scored);
 
-//  7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
+// //  7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
 
-// use LOGICAL OPERATOR
-team1 < team2 && console.log('Team 1 is more likely to win.');
-team2 < team1 && console.log('Team 2 is more likely to win.');
-// Team 1 is more likely to win.
+// // use LOGICAL OPERATOR
+// team1 < team2 && console.log('Team 1 is more likely to win.');
+// team2 < team1 && console.log('Team 2 is more likely to win.');
+// // Team 1 is more likely to win.
+
+// ////////////////////////////////////////////////
+// // The Nullish Coalescing Order (??)
+// ////////////////////////////////////////////////
