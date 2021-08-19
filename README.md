@@ -93,3 +93,5 @@
   rest pattern is on the left side of =
   spread pattern is on the right side of the =
 - short circuiting if the 1st value is a truthy value it will return the Truthy value.
+
+- Review Object.values()
