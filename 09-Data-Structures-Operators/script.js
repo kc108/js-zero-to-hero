@@ -1049,3 +1049,60 @@ const checkBaggage = function (items) {
 checkBaggage('I have a labtop, some Food and a pocket Knife');
 checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
+
+console.log('a+very+nice+string'.split('+')); // (4) ["a", "very", "nice", "string"];
+console.log('Kim Carpico'.split(' ')); // ["Kim", "Carpico"]
+
+const [firstName, lastName] = 'Kim Carpico'.split(' ');
+
+// want to make the last name uppercase
+const newName = ['Ms.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName); // Ms. Kim CARPICO
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davis');
+capitalizeName('finn carpico');
+
+// PADDING A STRING to make a string a certain length
+const message = 'Go to gate 23';
+// padStart adds some characters to the beginning of the string
+// first parameter specifies how many characters you want to pad the string with and second, what you want to pad it with
+console.log(message.padStart(25, '+'));
+console.log('Jonas'.padStart(25, '+'));
+
+// PAD END
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+
+// WORKING WITH CREDIT CARD NUMBERS: Implement a function that masks #
+const maskCreditCard = function (number) {
+  // you can convert a number to a string this way
+  // ** BC when one of the operants is a string all will become a string
+  const string = number + '';
+  const last = string.slice(-4);
+  return last.padStart(string.length, '*');
+};
+
+console.log(maskCreditCard(4815345689765444));
+console.log(maskCreditCard('5557778880001234'));
+
+// Repeat
+const message2 = 'Bad weather... All Departures Delayed...';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+};
+
+planesInLine(5); // There are 5 planes in line.
+planesInLine(3); // There are 3 planes in line.
+planesInLine(12); // There are 12 planes in line.

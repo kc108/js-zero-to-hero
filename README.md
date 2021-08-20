@@ -129,3 +129,20 @@
 - 1. more "traditional" key/value store("abused" objects)
 - 2. easier to write and access values with . and []
 - 3. with JSON data objects are more useful than maps because that is how the data is read by the computer
+
+---
+
+###### WORKING WITH STRINGS JS
+
+- Methods
+- repeat()
+- padStart()
+- padEnd()
+- join()
+- splice()
+- split()
+- replace()
+- replaceAll()
+- trim() -> removes whitespaces
+- toUpperCase
+- toLowerCase
