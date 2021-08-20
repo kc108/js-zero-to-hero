@@ -989,120 +989,224 @@ GOOD LUCK 😀
 
 // console.log(passengerCorrect('jOnAS'));
 
-// Comparing email
-const email = 'hello@jonas.io';
-const loginEmail = '  Hello@Jonas.Io \n'; // input of email was wrong
+// // Comparing email
+// const email = 'hello@jonas.io';
+// const loginEmail = '  Hello@Jonas.Io \n'; // input of email was wrong
 
-// COMPARE AND SEE IF THEY ARE THE SAME
-const lowerEmail = loginEmail.toLowerCase();
-const trimmedEmail = lowerEmail.trim(); // REMOVES WHITE SPACES
-console.log(trimmedEmail); // hello@jonas.io
+// // COMPARE AND SEE IF THEY ARE THE SAME
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim(); // REMOVES WHITE SPACES
+// console.log(trimmedEmail); // hello@jonas.io
 
-// REPLACE ALL OF THAT WITH THIS - returns the same thing as above
-const normalizedEmail = loginEmail.toLowerCase().trim();
-console.log(normalizedEmail); // hello@jonas.io
-console.log(email === normalizedEmail);
+// // REPLACE ALL OF THAT WITH THIS - returns the same thing as above
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail); // hello@jonas.io
+// console.log(email === normalizedEmail);
 
-// TODO: Create function that does the above for practice later
+// // TODO: Create function that does the above for practice later
 
-// REPLACING
-const priceGB = '288,97£';
-const priceUS = priceGB.replace('£', '$').replace(',', '.');
-console.log(priceUS); // 288.97$
+// // REPLACING
+// const priceGB = '288,97£';
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS); // 288.97$
 
-const announcement =
-  'All passengers come to boarding door 23. Boarding door 23!';
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23!';
 
-// RETURNS: All passengers come to boarding gate 23. Boarding door 23!
-// *** NOTICE IT ONLY REPLACED THE FIRST INSTANCE ***
-console.log(announcement.replace('door', 'gate'));
+// // RETURNS: All passengers come to boarding gate 23. Boarding door 23!
+// // *** NOTICE IT ONLY REPLACED THE FIRST INSTANCE ***
+// console.log(announcement.replace('door', 'gate'));
 
-// *** NEWEST WAY
-// RETURNS: All passengers come to boarding gate 23. Boarding gate 23!
-console.log(announcement.replaceAll('door', 'gate'));
+// // *** NEWEST WAY
+// // RETURNS: All passengers come to boarding gate 23. Boarding gate 23!
+// console.log(announcement.replaceAll('door', 'gate'));
 
-// *** OLD WAY: this will also work
-console.log(announcement.replaceAll(/door/g, 'gate'));
+// // *** OLD WAY: this will also work
+// console.log(announcement.replaceAll(/door/g, 'gate'));
 
-// 3 METHODS THAT RETURN BOOLEANS: includes(), startsWith(), endsWith()
-// Booleans
-const plane = 'Airbus A320neo';
-console.log(plane.includes('A320')); // true
-console.log(plane.includes('Boeing')); // false
-console.log(plane.startsWith('Air')); // false
+// // 3 METHODS THAT RETURN BOOLEANS: includes(), startsWith(), endsWith()
+// // Booleans
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320')); // true
+// console.log(plane.includes('Boeing')); // false
+// console.log(plane.startsWith('Air')); // false
 
-if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
-  console.log('Part of the NEW Airbus family.');
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family.');
+// }
+
+// // PRACTICE EXERCISE
+// const checkBaggage = function (items) {
+//   // usually check something by converting everything into lowercase
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT allowed on board');
+//   } else {
+//     console.log('Welcome aboard!');
+//   }
+// };
+
+// checkBaggage('I have a labtop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+// console.log('a+very+nice+string'.split('+')); // (4) ["a", "very", "nice", "string"];
+// console.log('Kim Carpico'.split(' ')); // ["Kim", "Carpico"]
+
+// const [firstName, lastName] = 'Kim Carpico'.split(' ');
+
+// // want to make the last name uppercase
+// const newName = ['Ms.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName); // Ms. Kim CARPICO
+
+// const capitalizeName = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
+
+//   for (const n of names) {
+//     namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//   }
+//   console.log(namesUpper.join(' '));
+// };
+
+// capitalizeName('jessica ann smith davis');
+// capitalizeName('finn carpico');
+
+// // PADDING A STRING to make a string a certain length
+// const message = 'Go to gate 23';
+// // padStart adds some characters to the beginning of the string
+// // first parameter specifies how many characters you want to pad the string with and second, what you want to pad it with
+// console.log(message.padStart(25, '+'));
+// console.log('Jonas'.padStart(25, '+'));
+
+// // PAD END
+// console.log(message.padStart(25, '+').padEnd(30, '+'));
+// console.log(message.padStart(20, '+').padEnd(30, '+'));
+
+// // WORKING WITH CREDIT CARD NUMBERS: Implement a function that masks #
+// const maskCreditCard = function (number) {
+//   // you can convert a number to a string this way
+//   // ** BC when one of the operants is a string all will become a string
+//   const string = number + '';
+//   const last = string.slice(-4);
+//   return last.padStart(string.length, '*');
+// };
+
+// console.log(maskCreditCard(4815345689765444));
+// console.log(maskCreditCard('5557778880001234'));
+
+// // Repeat
+// const message2 = 'Bad weather... All Departures Delayed...';
+// console.log(message2.repeat(5));
+
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+// };
+
+// planesInLine(5); // There are 5 planes in line.
+// planesInLine(3); // There are 3 planes in line.
+// planesInLine(12); // There are 12 planes in line.
+
+//////////////////////////////////////////
+// CODING CHALLENGE #4
+//////////////////////////////////////////
+/* 
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const text = document.querySelector('textarea').value;
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  console.log(text);
+  const rows = text.split('\n');
+  console.log(rows);
+
+  for (const [i, row] of rows.entries()) {
+    // split into two parts
+    const [first, second] = row.toLowerCase().trim().split('_');
+    console.log(row, first, second);
+    const output = `${first} ${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+  }
+});
+
+// TEST THE CODE UP TO HERE BY PASTING THIS IN THE DEVELOPER CONSOLE
+// test in the dev console by pasting 'underscore_case', etc from above
+// THIS TEST DATA (pasted to textarea) -> underscoreCase
+// underscore_case;
+// first_name;
+// Some_Variable;
+// calculate_AGE;
+// delayed_departure;
+
+// Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// 🛑 Delayed Departure from FAO to TXL (11h25)
+//        Arrival from BRU to FAO (11h45)
+// 🛑 Delayed Arrival from HEL to FAO (12h05)
+//        Departure from FAO to LIS (12h30)
+
+// split(): splits into an array
+// console.log(flights.split('+')); // [""], [""]
+
+// *** THIS WHOLE FOR-BLOCK OUTPUTS THE FOLLOWING:
+// _Delayed_Departure fao93766109 txl2133758440 (11:25)
+// _Arrival bru0943384722 fao93766109 (11:45)
+// ETC.
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';'); // _Delayed_Departure;fao93766109;txl2133758440;11:25
+  //_Arrival;bru0943384722;fao93766109;11:45
+  //etc
+  const output = `${type.startsWith('_Delayed') ? '🛑' : ' '} ${type.replaceAll(
+    '_',
+    ' '
+  )} ${getCode(from).toUpperCase()} ${getCode(to)} (${time.replace(
+    ':',
+    'h'
+    // the 36 is trial-and-error, view the Dev Con to make sure everything lines up on the right-hand side
+  )})`.padStart(36);
+  console.log(output);
 }
 
-// PRACTICE EXERCISE
-const checkBaggage = function (items) {
-  // usually check something by converting everything into lowercase
-  const baggage = items.toLowerCase();
-  if (baggage.includes('knife') || baggage.includes('gun')) {
-    console.log('You are NOT allowed on board');
-  } else {
-    console.log('Welcome aboard!');
-  }
-};
+//Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
 
-checkBaggage('I have a labtop, some Food and a pocket Knife');
-checkBaggage('Socks and camera');
-checkBaggage('Got some snacks and a gun for protection');
-
-console.log('a+very+nice+string'.split('+')); // (4) ["a", "very", "nice", "string"];
-console.log('Kim Carpico'.split(' ')); // ["Kim", "Carpico"]
-
-const [firstName, lastName] = 'Kim Carpico'.split(' ');
-
-// want to make the last name uppercase
-const newName = ['Ms.', firstName, lastName.toUpperCase()].join(' ');
-console.log(newName); // Ms. Kim CARPICO
-
-const capitalizeName = function (name) {
-  const names = name.split(' ');
-  const namesUpper = [];
-
-  for (const n of names) {
-    namesUpper.push(n[0].toUpperCase() + n.slice(1));
-  }
-  console.log(namesUpper.join(' '));
-};
-
-capitalizeName('jessica ann smith davis');
-capitalizeName('finn carpico');
-
-// PADDING A STRING to make a string a certain length
-const message = 'Go to gate 23';
-// padStart adds some characters to the beginning of the string
-// first parameter specifies how many characters you want to pad the string with and second, what you want to pad it with
-console.log(message.padStart(25, '+'));
-console.log('Jonas'.padStart(25, '+'));
-
-// PAD END
-console.log(message.padStart(25, '+').padEnd(30, '+'));
-console.log(message.padStart(20, '+').padEnd(30, '+'));
-
-// WORKING WITH CREDIT CARD NUMBERS: Implement a function that masks #
-const maskCreditCard = function (number) {
-  // you can convert a number to a string this way
-  // ** BC when one of the operants is a string all will become a string
-  const string = number + '';
-  const last = string.slice(-4);
-  return last.padStart(string.length, '*');
-};
-
-console.log(maskCreditCard(4815345689765444));
-console.log(maskCreditCard('5557778880001234'));
-
-// Repeat
-const message2 = 'Bad weather... All Departures Delayed...';
-console.log(message2.repeat(5));
-
-const planesInLine = function (n) {
-  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
-};
-
-planesInLine(5); // There are 5 planes in line.
-planesInLine(3); // There are 3 planes in line.
-planesInLine(12); // There are 12 planes in line.
+function boolToWord(bool) {
+  return bool ? 'Yes' : 'No';
+}
