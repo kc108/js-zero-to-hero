@@ -1171,42 +1171,46 @@ document.querySelector('button').addEventListener('click', function () {
 // calculate_AGE;
 // delayed_departure;
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// // Data needed for a later exercise
+// const flights =
+//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-// 🛑 Delayed Departure from FAO to TXL (11h25)
-//        Arrival from BRU to FAO (11h45)
-// 🛑 Delayed Arrival from HEL to FAO (12h05)
-//        Departure from FAO to LIS (12h30)
+// // 🛑 Delayed Departure from FAO to TXL (11h25)
+// //        Arrival from BRU to FAO (11h45)
+// // 🛑 Delayed Arrival from HEL to FAO (12h05)
+// //        Departure from FAO to LIS (12h30)
 
-// split(): splits into an array
-// console.log(flights.split('+')); // [""], [""]
+// // split(): splits into an array
+// // console.log(flights.split('+')); // [""], [""]
 
-// *** THIS WHOLE FOR-BLOCK OUTPUTS THE FOLLOWING:
-// _Delayed_Departure fao93766109 txl2133758440 (11:25)
-// _Arrival bru0943384722 fao93766109 (11:45)
-// ETC.
+// // *** THIS WHOLE FOR-BLOCK OUTPUTS THE FOLLOWING:
+// // _Delayed_Departure fao93766109 txl2133758440 (11:25)
+// // _Arrival bru0943384722 fao93766109 (11:45)
+// // ETC.
 
-const getCode = str => str.slice(0, 3).toUpperCase();
+// const getCode = str => str.slice(0, 3).toUpperCase();
 
-for (const flight of flights.split('+')) {
-  const [type, from, to, time] = flight.split(';'); // _Delayed_Departure;fao93766109;txl2133758440;11:25
-  //_Arrival;bru0943384722;fao93766109;11:45
-  //etc
-  const output = `${type.startsWith('_Delayed') ? '🛑' : ' '} ${type.replaceAll(
-    '_',
-    ' '
-  )} ${getCode(from).toUpperCase()} ${getCode(to)} (${time.replace(
-    ':',
-    'h'
-    // the 36 is trial-and-error, view the Dev Con to make sure everything lines up on the right-hand side
-  )})`.padStart(36);
-  console.log(output);
-}
+// for (const flight of flights.split('+')) {
+//   const [type, from, to, time] = flight.split(';'); // _Delayed_Departure;fao93766109;txl2133758440;11:25
+//   //_Arrival;bru0943384722;fao93766109;11:45
+//   //etc
+//   const output = `${type.startsWith('_Delayed') ? '🛑' : ' '} ${type.replaceAll(
+//     '_',
+//     ' '
+//   )} ${getCode(from).toUpperCase()} ${getCode(to)} (${time.replace(
+//     ':',
+//     'h'
+//     // the 36 is trial-and-error, view the Dev Con to make sure everything lines up on the right-hand side
+//   )})`.padStart(36);
+//   console.log(output);
+// }
 
-//Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
+// //Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
 
-function boolToWord(bool) {
-  return bool ? 'Yes' : 'No';
-}
+// function boolToWord(bool) {
+//   return bool ? 'Yes' : 'No';
+// }
+
+/////////////////////////////////////
+// SECTION 10: A CLOSER LOOK AT FUNCTIONS
+/////////////////////////////////////
