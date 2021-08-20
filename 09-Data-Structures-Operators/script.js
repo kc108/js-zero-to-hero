@@ -921,48 +921,131 @@ GOOD LUCK 😀
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const airline = 'TAP Air Portugal';
-const plane = 'A320';
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
 
-console.log(plane[0]); // A
-console.log(plane[1]); // 3
-console.log(plane[2]); //2
-console.log('B737'[0]); // B
-console.log('B737'.length); // 4
+// console.log(plane[0]); // A
+// console.log(plane[1]); // 3
+// console.log(plane[2]); //2
+// console.log('B737'[0]); // B
+// console.log('B737'.length); // 4
 
-// INDEX METHODS ARE USEFUL WITH SLICE METHODS
-console.log(airline.indexOf('r')); // 6
-console.log(airline.lastIndexOf('r')); // 10
-console.log(airline.indexOf('Portugal')); // 8: this is case sensitive, will return -1 if it is not found
+// // INDEX METHODS ARE USEFUL WITH SLICE METHODS
+// console.log(airline.indexOf('r')); // 6
+// console.log(airline.lastIndexOf('r')); // 10
+// console.log(airline.indexOf('Portugal')); // 8: this is case sensitive, will return -1 if it is not found
 
-// SLICE: returns at the position it is sliced at
-console.log(airline.slice(4)); // Air Portugal (does NOT change the underlying string, Impossible to mutate strings because they are PRIMITIVE)
+// // SLICE: returns at the position it is sliced at
+// console.log(airline.slice(4)); // Air Portugal (does NOT change the underlying string, Impossible to mutate strings because they are PRIMITIVE)
 
-console.log(airline.slice(4, 7)); // Air: end value is NOT included in the string
+// console.log(airline.slice(4, 7)); // Air: end value is NOT included in the string
 // length is always 7-4 = 3 as in this EXAMPLE
 
-console.log(airline.slice(0, airline.indexOf(' '))); // TAP
-console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
+// console.log(airline.slice(0, airline.indexOf(' '))); // TAP
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
 
-console.log(airline.slice(-2)); // al
-console.log(airline.slice(1, -1)); // AP Air Portuga
+// console.log(airline.slice(-2)); // al
+// console.log(airline.slice(1, -1)); // AP Air Portuga
 
-// PRACTICE: check if seat is a middle seat
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
-  if (s === 'B' || s === 'E') console.log('You got the middle seat 😆');
-  else console.log('You got lucky ❤️');
+// // PRACTICE: check if seat is a middle seat
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') console.log('You got the middle seat 😆');
+//   else console.log('You got lucky ❤️');
+// };
+
+// checkMiddleSeat('11B'); // You got the middle seat
+// checkMiddleSeat('23C'); // You got lucky
+// checkMiddleSeat('3E'); // You got the middle seat
+
+// // UNDERSTANDING WHY THIS WORKS
+// // Strings: when a method is called on a string. JS converts string PRIMITIVE to string OBJECT BEHIND THE SCENES. This is called 'boxing'.
+// console.log(new String('jonas')); // String {"jonas"} THIS SHOWS THAT
+// console.log(typeof new String('jonas')); // object
+
+// // This shows that JS converts it from 'object' above back to a 'string'
+// console.log(typeof new String('jonas').slice(1)); // string
+
+//////////////////////////////////////////
+// WORKING WITH STRINGS - PART II
+//////////////////////////////////////////
+// const airline = 'TAP Air Portugal';
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// const passenger = 'jOnAS'; // Jonas
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// // Create a function and returns the correct one
+// function passengerCorrect() {
+//   const passengerLower = passenger1.toLowerCase();
+//   return passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// }
+
+// console.log(passengerCorrect('jOnAS'));
+
+// Comparing email
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.Io \n'; // input of email was wrong
+
+// COMPARE AND SEE IF THEY ARE THE SAME
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim(); // REMOVES WHITE SPACES
+console.log(trimmedEmail); // hello@jonas.io
+
+// REPLACE ALL OF THAT WITH THIS - returns the same thing as above
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail); // hello@jonas.io
+console.log(email === normalizedEmail);
+
+// TODO: Create function that does the above for practice later
+
+// REPLACING
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS); // 288.97$
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+// RETURNS: All passengers come to boarding gate 23. Boarding door 23!
+// *** NOTICE IT ONLY REPLACED THE FIRST INSTANCE ***
+console.log(announcement.replace('door', 'gate'));
+
+// *** NEWEST WAY
+// RETURNS: All passengers come to boarding gate 23. Boarding gate 23!
+console.log(announcement.replaceAll('door', 'gate'));
+
+// *** OLD WAY: this will also work
+console.log(announcement.replaceAll(/door/g, 'gate'));
+
+// 3 METHODS THAT RETURN BOOLEANS: includes(), startsWith(), endsWith()
+// Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320')); // true
+console.log(plane.includes('Boeing')); // false
+console.log(plane.startsWith('Air')); // false
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family.');
+}
+
+// PRACTICE EXERCISE
+const checkBaggage = function (items) {
+  // usually check something by converting everything into lowercase
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board');
+  } else {
+    console.log('Welcome aboard!');
+  }
 };
 
-checkMiddleSeat('11B'); // You got the middle seat
-checkMiddleSeat('23C'); // You got lucky
-checkMiddleSeat('3E'); // You got the middle seat
-
-// UNDERSTANDING WHY THIS WORKS
-// Strings: when a method is called on a string. JS converts string PRIMITIVE to string OBJECT BEHIND THE SCENES. This is called 'boxing'.
-console.log(new String('jonas')); // String {"jonas"} THIS SHOWS THAT
-console.log(typeof new String('jonas')); // object
-
-// This shows that JS converts it from 'object' above back to a 'string'
-console.log(typeof new String('jonas').slice(1)); // string
+checkBaggage('I have a labtop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
