@@ -19,10 +19,6 @@
 // //   },
 // // };
 
-// // // // // // // Data needed for a later exercise
-// // // // // // const flights =
-// // // // // //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
 // // // // // Data needed for first part of the section
 // // // // const restaurant = {
 // // // //   foodName: 'Classico Italiano',
@@ -921,3 +917,52 @@ GOOD LUCK 😀
 //////////////////////////////////////////
 // WORKING WITH STRINGS - PART I
 //////////////////////////////////////////
+// Data needed for a later exercise
+// const flights =
+//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]); // A
+console.log(plane[1]); // 3
+console.log(plane[2]); //2
+console.log('B737'[0]); // B
+console.log('B737'.length); // 4
+
+// INDEX METHODS ARE USEFUL WITH SLICE METHODS
+console.log(airline.indexOf('r')); // 6
+console.log(airline.lastIndexOf('r')); // 10
+console.log(airline.indexOf('Portugal')); // 8: this is case sensitive, will return -1 if it is not found
+
+// SLICE: returns at the position it is sliced at
+console.log(airline.slice(4)); // Air Portugal (does NOT change the underlying string, Impossible to mutate strings because they are PRIMITIVE)
+
+console.log(airline.slice(4, 7)); // Air: end value is NOT included in the string
+// length is always 7-4 = 3 as in this EXAMPLE
+
+console.log(airline.slice(0, airline.indexOf(' '))); // TAP
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
+
+console.log(airline.slice(-2)); // al
+console.log(airline.slice(1, -1)); // AP Air Portuga
+
+// PRACTICE: check if seat is a middle seat
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😆');
+  else console.log('You got lucky ❤️');
+};
+
+checkMiddleSeat('11B'); // You got the middle seat
+checkMiddleSeat('23C'); // You got lucky
+checkMiddleSeat('3E'); // You got the middle seat
+
+// UNDERSTANDING WHY THIS WORKS
+// Strings: when a method is called on a string. JS converts string PRIMITIVE to string OBJECT BEHIND THE SCENES. This is called 'boxing'.
+console.log(new String('jonas')); // String {"jonas"} THIS SHOWS THAT
+console.log(typeof new String('jonas')); // object
+
+// This shows that JS converts it from 'object' above back to a 'string'
+console.log(typeof new String('jonas').slice(1)); // string
