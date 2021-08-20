@@ -844,3 +844,62 @@ console.log(restaurant.size); // 8
 
 console.log(restaurant.get(arr)); // Test
 // this adds a 9th object // 8 : {h1 => "Heading"}
+
+//////////////////////////////////////////
+// Maps: Iterations
+//////////////////////////////////////////
+const question = new Map([
+  ['question', 'What is the best programming language?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct 😃'],
+  [false, 'Try again!'],
+]);
+
+console.log(question);
+// creates one object
+
+// Covert object to map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+
+console.log(hoursMap);
+// Map(3) {'thu' => {}, "fri" => {}, "sat" => {}}
+
+// ITERATION WITH MAPS
+// QUIZ APP
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+const answer = Number(prompt('Your answer'));
+console.log(answer);
+console.log(question.get(question.get('correct') === answer)); // true
+
+// CONVERTING A MAP BACK TO AN ARRAY
+console.log([...question]);
+// console.log(question.entries());
+console.log(...question.keys());
+console.log(...question.values());
+
+///////////////////////////////////////
+// DATA STRUCTURES OVERVIEW:
+///////////////////////////////////////
+/*
+SOURCES OF DATA
+1. from the program itself
+2. From the UI: Data input from the user or data written in DOM (eg tasks in todo app)
+3. From external sources: data fetched for example from web API
+*/
+/* Store data in DATA STRUCTURES
+1. ARRAYS OR SETS: Store a simple list of data
+2. OBJECTS OR MAPS: Stores key/value pairs, allows us to describe values
+
+- JSON DATA can be converted to Arrays or Objects because it uses the same format
+
+
+
+*/

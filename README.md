@@ -97,3 +97,35 @@
 - Reviewed Object.values() -> RETURNS the values from [key, value] pairs
 - Reviewed Object.entries() -> RETURNS the [key, value] pairs of an object
 - Coding Challenge #2 -> REVIEWED \*\*\*
+
+---
+
+###### Arrays vs. Sets AND Objects vs. Maps
+
+###### Arrays
+
+- 1. use when you need ORDERED list of values (might contain duplicates)
+- 2. use when you need to manipulate data
+
+###### Sets
+
+- 1. use when you need to work with UNIQUE values
+- 2. use when HIGH-PERFORMANCE is really important
+- 3. use to remove duplicates from arrays
+
+##### OBJECTS VS. MAPS - when we need to display key/value pairs
+
+- maps - new to ES6
+
+###### MAPS
+
+- 1. better performance
+- 2. keys can have ANY data type
+- 3. easy to iterate
+- 4. easy to compute size
+
+###### OBJECTS
+
+- 1. more "traditional" key/value store("abused" objects)
+- 2. easier to write and access values with . and []
+- 3. with JSON data objects are more useful than maps because that is how the data is read by the computer
