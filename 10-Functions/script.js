@@ -437,3 +437,19 @@ boardPassengers(180, 3);
 // Will start boarding in 3 seconds
 // We are now boarding all 180 passengers
 // There are 3 groups, each with 60 passengers
+
+///////////////////////////////////////////////////////
+// ******************* CODING CHALLENGE #2 ********************
+///////////////////////////////////////////////////////
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+
+// How does this callback function get access to the header property?
+// The closure. The immediate function expression and variable for 1st header is gone.
+// HOWEVER the IIFE is still attached to the body element for access later
