@@ -358,5 +358,30 @@
 // console.log(notPrivate); // 46: this works because it used 'var' NOT 'let' or 'const'
 
 ///////////////////////////////////////////////////////
-// CLOSURES
+// ******************* CLOSURES ********************
 ///////////////////////////////////////////////////////
+// One of the most difficult things to understand by many people who study CS
+// CLOSURE: Happens automatically in certain situations
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+// booker function is created in the Global Context scope
+// it is this connection that we call CLOSURE
+// scope change is preserved through the closure
+const booker = secureBooking();
+
+// Call Stack order:
+// Global EC
+// secureBooking() EC
+// passengerCount = 0;
+
+// CLOSURE MAKES THIS POSSIBLE
+booker(); // 1 passengers
+booker(); // 2 passengers
+booker(); // 3 passengers
