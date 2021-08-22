@@ -72,5 +72,16 @@ checkIn(flight, jonas);
 // passing by value: JS ONLY DOES THIS.
 
 ///////////////////////////////////////////////////////
-//
+// FIRST CLASS AND HIGHER-ORDER FUNCTIONS
 ///////////////////////////////////////////////////////
+// FIRST-CLASS FUNCTIONS:
+// 1. JS treats functions as FIRST-CLASS CITIZENS
+// 2. This means that functions are SIMPLY VALUES
+// 3. Functions are just another "type" of object
+
+// *** FUNCTIONS ARE OBJECTS, there are also FUNCTION METHODS ***
+// bind()
+
+// HIGHER-ORDER FUNCTIONS
+// A function that RECIEVES another functions as an argument, that RETURNS a new function, or BOTH
+// THIS IS ONLY possible because of first-class functions
