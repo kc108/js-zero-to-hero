@@ -135,6 +135,13 @@ const greet = function (greeting) {
   };
 };
 
+// // re-write this as an ARROW FUNCTION
+// const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+// greetArr('Hi')('Jonas');
+
 const greeterHey = greet('Hey');
 greeterHey('Jonas'); // Hey Jonas
 greeterHey('Steven'); // Hey Steven
+
+greet('Hello')('Jonas'); // Hello Jonas
+// THIS IS VERY USEFUL IN A CONCEPT CALLED 'FUNCTIONAL PROGRAMMING'
