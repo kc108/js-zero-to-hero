@@ -146,3 +146,7 @@
 - trim() -> removes whitespaces
 - toUpperCase
 - toLowerCase
+
+##### A CLOSER LOOK AT FUNCTIONS
+
+- call() method on object methods

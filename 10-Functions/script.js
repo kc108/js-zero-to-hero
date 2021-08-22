@@ -145,3 +145,64 @@ greeterHey('Steven'); // Hey Steven
 
 greet('Hello')('Jonas'); // Hello Jonas
 // THIS IS VERY USEFUL IN A CONCEPT CALLED 'FUNCTIONAL PROGRAMMING'
+
+///////////////////////////////////////////////////////
+// the call and apply methods
+///////////////////////////////////////////////////////
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // OLD SYNTAX
+  //   book: function() {
+
+  //   }
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode} ${flightNum}`
+    );
+    this.bookings.push({ flight: ` ${this.iataCode} ${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Kim Carpico'); // Kim Carpico booked a seat on Lufthansa flight LH 239
+lufthansa.book(365, 'Danielle Carpico');
+console.log(lufthansa); // {airline: "Lufthansa", iataCode: "LH", bookings: Array(2), book: f}
+
+const eurowings = {
+  name: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+console.log(book);
+
+// DOES NOT WORK
+// this is NO longer a method, it now points to undefined via the 'this' keyword
+// book(23, 'Sarah Williams'); // RESULTS IN: "Uncaught TypeError"
+
+// You can use the CALL() to make the 'this' keyword point to the correct word so it doesn't return UNDEFINED
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings); // {name: "Eurowings", iataCode: "EW", bookings: Array(1)}
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// APPLY(): DOES THE SAME THINGS AS CALL()
+// It doesn't have a list following the second paramater, instead it has an array
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+// *** MODERN JAVASCRIPT: THIS IS THE BEST PRACTICE, don't use apply over this ***
+book.call(swiss, ...flightData);
