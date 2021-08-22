@@ -150,3 +150,5 @@
 ##### A CLOSER LOOK AT FUNCTIONS
 
 - call() method on object methods
+- bind(): IMPORTANT - review this more
+- apply()

@@ -206,3 +206,55 @@ console.log(swiss);
 
 // *** MODERN JAVASCRIPT: THIS IS THE BEST PRACTICE, don't use apply over this ***
 book.call(swiss, ...flightData);
+
+///////////////////////////////////////////////////////
+// THE BIND METHOD: RETURNS A NEW FUNCTION WHERE THE THIS KEYWORD IS BOUND
+///////////////////////////////////////////////////////
+// book.call(eurowings, 23, 'Sarah Williams');
+
+const bookEW = book.bind(eurowings); // this will return a new function
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Steven Williams');
+
+// THIS ALLOWS YOU TO SET IN STONE FUNCTIONS ARGUMENTS
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Jonas Schmedtmann'); // Jonas Schmedtmann booked a seat on Eurowings flight EW 23
+bookEW23('Martha Cooper'); // Martha Cooper booked a seat on Eurowings flight EW 23
+
+// *** WITH EVENT LISTENER ***
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes); // NaN bc this keyword points to the keyword on the button
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// PARTIAL APPLICATION - can preset parameters
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200)); // 220
+
+// first argument of bind() is the 'this' keyword, since it is NOT in the function it is standard to use NULL
+const addVAT = addTax.bind(null, 0.23);
+// This is what are addVAT function looks like
+// addVAT = value => value + value * 0.23
+
+console.log(addVAT(100)); // 123
+console.log(addVAT(23)); // 28.29
+
+// reWRITE with one function returning another function - EXAMPLE
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT(100)); // 123
+console.log(addVAT(23)); // 28.29
