@@ -152,3 +152,6 @@
 - call() method on object methods
 - bind(): IMPORTANT - review this more
 - apply()
+- setTimeOut(): learned how to set a timer with a closure
+
+#####

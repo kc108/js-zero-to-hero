@@ -385,3 +385,55 @@ const booker = secureBooking();
 booker(); // 1 passengers
 booker(); // 2 passengers
 booker(); // 3 passengers
+
+//.dir() = shows the properties attached to an object
+// you can see the closure is coming from secureBooking() here
+console.dir(booker);
+
+///////////////////////////////////////////////////////
+// ******************* MORE CLOSURE EXAMPLES ********************
+///////////////////////////////////////////////////////
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+// RE-assigning f function
+h(); // 46
+f(); // 1554
+// used to show where the CLOSURE is located
+console.dir(f);
+
+// EXAMPLE 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  // using a timer - example, second argument is in milliseconds 1000 milliseconds is 1 second
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180, 3);
+// Will start boarding in 3 seconds
+// We are now boarding all 180 passengers
+// There are 3 groups, each with 60 passengers
