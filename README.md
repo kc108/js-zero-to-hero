@@ -154,4 +154,10 @@
 - apply()
 - setTimeOut(): learned how to set a timer with a closure
 
-#####
+##### ARRAYS BANKIST
+
+- join()
+- concat()
+- reverse(): MUTATES THE ORIGINAL ARRAY
+- slice(): does NOT change the original array
+- splice(): changes the original array

@@ -74,3 +74,42 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// SIMPLE ARRAY METHODS
+/////////////////////////////////////////////////
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// SLICE():
+console.log(arr.slice(2)); // Array(3) ['c', 'd', 'e']
+console.log(arr.slice(-2)); // ['d', 'e']
+console.log(arr.slice(2, 4)); // ['c', 'd']
+
+// SLICE() TO CREATE A SHALLOW COPY
+console.log(arr.slice()); // ['a', 'b', 'c', 'd', 'e']
+console.log([...arr]); // ['a', 'b', 'c', 'd', 'e']
+
+// SPLICE(): changes the original array, where slice() does not
+console.log(arr.splice(2)); // ["c", "d", "e"]
+console.log(arr); // ["a", "b"]
+
+console.log(arr.splice(2)); // ["c", "d", "e"]
+arr.splice(-1); // ["a", "b", "c", "d"]
+console.log(arr);
+arr.splice(1, 2);
+console.log(arr); // ["a", "d"]
+
+// REVERSE
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+
+// REVERSE() DOES MUTATE THE 'ORIGINAL' ARRAY
+console.log(arr2.reverse()); // ['f', 'g', 'h', 'i', 'j'];
+console.log(arr2); // ['f', 'g', 'h', 'i', 'j'];
+
+// concat(): does NOT MUTATE any of the original arrays
+const letters = arr.concat(arr2); // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+console.log(letters);
+console.log(...arr, ...arr2); // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+// join()
+console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
