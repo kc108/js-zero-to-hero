@@ -65,11 +65,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -143,3 +143,29 @@ movements.forEach(function (mov, i, arr) {
 // 1: function(450)
 // 2: function(400)
 // ...etc
+
+/////////////////////////////////////////////////
+// LOOPING MAPS/SETS: forEach() methods
+/////////////////////////////////////////////////
+// MAP
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// SET: DOESN'T HAVE KEYS so key in the parameter doesn't make sense but it was decided to keep the same parameters in the callback function
+const currenciesUnique = new Set(['USD', 'GBP', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+
+// a throw away syntax of _ is used for a value that is not used but needs to be written there
+currenciesUnique.forEach(function (value, _, map) {
+  console.log(`${value}: ${value}`);
+});
+// USD: USD
+// GBP: GBP
+// EUR: EUR
