@@ -161,3 +161,8 @@
 - reverse(): MUTATES THE ORIGINAL ARRAY
 - slice(): does NOT change the original array
 - splice(): changes the original array
+
+// \*\*\* OTHER THAN THESE DIFFERENCES: it is a matter of personal preferences
+
+- forEach(): you cannot break out of forEach(), will not be able to continue; or break;
+- for.. of loop lets you break out of it
