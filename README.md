@@ -169,3 +169,4 @@
 - map() vs forEach()
 - use forEach when you don't want a separate array
 - map(): creates a new array
+- reduce()
