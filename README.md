@@ -166,3 +166,6 @@
 
 - forEach(): you cannot break out of forEach(), will not be able to continue; or break;
 - for.. of loop lets you break out of it
+- map() vs forEach()
+- use forEach when you don't want a separate array
+- map(): creates a new array
