@@ -463,7 +463,7 @@ const avg2 = calcAverageHumanAge([36, 32, 76, 48, 28]);
 console.log(avg1, avg2); // 44, 192
 
 // /////////////////////////////////////////////////
-// THE MAGIC OF CHAINING METHODS
+// CODING CHALLENGE #3
 // /////////////////////////////////////////////////
 // filter will return a new array, so we can then call the map() on that array
 // as long as they return a NEW ARRAY you can CHAIN THEM..
@@ -480,3 +480,35 @@ const totalDepositsUSD = movements
   // .map((acc, mov) => acc + mov, 0);
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD); // -1298.0000000002
+
+const calcAverageHumanAge2 = function (ages) {
+  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  console.log(humanAges);
+
+  // 2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(humanAges); // [36, 4, 32, 2, 76, 48, 28]
+  console.log(adults); // [36, 32, 76, 48, 28]
+
+  // 3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+  // const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+
+  // can also do it this way
+  const average = adults.reduce((acc, age, i, arr) => acc + arr.length, 0);
+
+  return average;
+};
+
+// RE-WRITTEN AS AN ARROW FUNCTION
+///////////////////////////////////////////////////////
+// coding challenge #3
+///////////////////////////////////////////////////////
+const calcAverageHumanAge = ages =>
+  ages
+    .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]); // [36, 4, 32, 2, 76, 48, 28]
+const avg2 = calcAverageHumanAge([36, 32, 76, 48, 28]);
+console.log(avg1, avg2); // 44, 192
