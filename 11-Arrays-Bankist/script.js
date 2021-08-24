@@ -96,6 +96,30 @@ const calcDisplayBalance = function (movements) {
 
 calcDisplayBalance(account1.movements); // 3840 is now displayed in the DevConsole
 
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes} EUR`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)} EUR`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest} EUR`;
+};
+
+calcDisplaySummary(account1.movements);
+
 // we do NOT have to return anything because we are doing what is called a 'side effect'.. basically some work behind the scenes
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -437,3 +461,22 @@ const calcAverageHumanAge = function (ages) {
 const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]); // [36, 4, 32, 2, 76, 48, 28]
 const avg2 = calcAverageHumanAge([36, 32, 76, 48, 28]);
 console.log(avg1, avg2); // 44, 192
+
+// /////////////////////////////////////////////////
+// THE MAGIC OF CHAINING METHODS
+// /////////////////////////////////////////////////
+// filter will return a new array, so we can then call the map() on that array
+// as long as they return a NEW ARRAY you can CHAIN THEM..
+const eurToUsd = 1.1;
+console.log(movements);
+
+// PIPELINE
+const totalDepositsUSD = movements
+  .filter(mov => mov < 0)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  // .map((acc, mov) => acc + mov, 0);
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD); // -1298.0000000002

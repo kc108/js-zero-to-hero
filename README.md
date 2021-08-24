@@ -170,3 +170,9 @@
 - use forEach when you don't want a separate array
 - map(): creates a new array
 - reduce()
+
+##### chaining methods
+
+- .filter -> .map -> .reduce()
+- you can chain as many methods as you want as long as they return a new array
+- THEREFORE you cannot chain something to the end of reduce()
