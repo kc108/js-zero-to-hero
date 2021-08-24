@@ -261,3 +261,48 @@ const checkDogs = function (dogsJulia, dogsKate) {
 // ALL OTHER elements will be filtered out
 
 // reduce(): reduce boils ("reduces") all array elements down to one single value (e.g., adding all elements together)
+
+/////////////////////////////////////////////////////////
+// MAP()
+////////////////////////////////////////////////////////
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// convert these to USD from EURO'S
+// this is considered the modern way, using functional programming
+const eurToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+// an ARROW FUNCTION : many people do NOT like the way this looks..
+// mainly because the RETURN is implicit with one argument
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+// with RETURN keyword
+// const movementsUSD = movements.map(mov => return mov * eurToUsd);
+
+console.log(movements); // [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movementsUSD); // [220, 495, -440, 3300, -715, -143]
+
+// OLD WAY
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSD.push(mov * eurToUsd);
+console.log(movementsUSDfor);
+
+const movementDescriptions = movements.map((mov, i, arr) => {
+  `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+    mov
+  )}`;
+
+  if (mov > 0) {
+    return `Movement ${i + 1}: You deposited ${mov}`;
+  } else {
+    return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
+  }
+});
+
+console.log(movementDescriptions); // ["Movement 1: You deposited 200", "Movement 2: You deposited 450"]... etc....
+
+/////////////////////////////////////////////////////////
+// FILTER():
+////////////////////////////////////////////////////////
