@@ -250,3 +250,14 @@ const checkDogs = function (dogsJulia, dogsKate) {
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 // checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 // *** THESE TEST DATAS BOTH CHECK OUT ***
+
+/////////////////////////////////////////////////////////
+// MAP(), FILTER(), REDUCE()
+////////////////////////////////////////////////////////
+// map(): similar to forEach() BUT creates a new array based on the original array
+// maps the values of the original array to a new array, more useful than a forEach()
+
+// filter(): returns a NEW ARRAY containing the array elements that passed a specified TEST CONDITION
+// ALL OTHER elements will be filtered out
+
+// reduce(): reduce boils ("reduces") all array elements down to one single value (e.g., adding all elements together)
