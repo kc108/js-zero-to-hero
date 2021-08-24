@@ -4,6 +4,7 @@
 /////////////////////////////////////////////////
 // BANKIST APP
 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
@@ -103,6 +104,29 @@ const createUsernames = function (accs) {
 createUsernames(accounts); // stw
 console.log(accounts); // console.log to show the username is now showing the 3 initials of user (e.g., js, js, stw, ss... etc)
 
+// FILTER()
+// This is the modern ES6 way  of doing it
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements); // [200, 450, -400, 3000, -650, -130, 70, 1300]
+console.log(deposits); // [200, 450, 3000, 70, 1300]
+
+// the above is the best practice because you can chain them all together
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+console.log(depositsFor); // [200, 450, 3000, 70, 1300]
+
+// // Create array of withdrawals
+// const withdrawals = movements.filter(function (mov) {
+//   return mov < 0;
+// });
+
+// ES6: Arrow function
+const withdrawals = movements.filter(mov => mov < 0);
+
+console.log(withdrawals); // [-400, -650, -130]
+
 // const user = 'Steven Thomas Williams'; // stw
 // const username = user
 //   .toLowerCase()
@@ -127,8 +151,6 @@ console.log(accounts); // console.log to show the username is now showing the 3 
 //   ['EUR', 'Euro'],
 //   ['GBP', 'Pound sterling'],
 // ]);
-
-// // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // /////////////////////////////////////////////////
 // // SIMPLE ARRAY METHODS
@@ -331,5 +353,5 @@ GOOD LUCK 😀
 // console.log(movementDescriptions); // ["Movement 1: You deposited 200", "Movement 2: You deposited 450"]... etc....
 
 /////////////////////////////////////////////////////////
-// FILTER():
+// FILTER(): used to filter for elements that satisfy a specific condition
 ////////////////////////////////////////////////////////
