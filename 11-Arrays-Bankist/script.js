@@ -88,7 +88,8 @@ const displayMovements = function (movements, sort = false) {
 };
 
 const calcDisplayBalance = function (acc) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  const balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  acc.balance = balance;
   labelBalance.textContent = `${acc.balance} EUR`;
 };
 
@@ -131,6 +132,16 @@ const createUsernames = function (accs) {
 createUsernames(accounts); // stw
 // console.log(accounts); // console.log to show the username is now showing the 3 initials of user (e.g., js, js, stw, ss... etc)
 
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+  // Display balance
+  calcDisplayBalance(acc);
+  // Display summary
+  calcDisplaySummary(acc);
+  console.log('LOGIN');
+};
+
 // EVENT HANDLER: CLICKING OR HITTING ENTER REGISTERS CLICK EVENT
 let currentAccount;
 
@@ -154,16 +165,39 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
 
     // clear the input fields
-    inputLoginUsername = inputLoginPin.value = '';
+    inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Display movements
-    displayMovements(currentAccount.movements);
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-    // Display summary
-    calcDisplaySummary(currentAccount);
-    console.log('LOGIN');
+    // Update UI
+    updateUI(currentAccount);
+  }
+});
+
+// EVENT HANDLER: to transfer money
+btnTransfer.addEventListener('click', function (e) {
+  // common to do with forms
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  // console.log(amount, receiverAcc);
+
+  inputTransferAmount.value = inputTransferTo.value = '';
+  // try in devConsole
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    // Doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
   }
 });
 
@@ -528,5 +562,35 @@ const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account); // {owner: "Jessica Davis"}... object is returned
 
 // /////////////////////////////////////////////////
-// *** Implementing the login method ****
+// *** CODE WARS PRACTICE ***
 // /////////////////////////////////////////////////\
+// Complete the solution so that it reverses the string passed into it.
+// 'world'  =>  'dlrow'
+
+function solution(str) {
+  return str.split('').reverse().join('');
+}
+console.log(solution('Kim')); // miK
+
+// FIND MULTIPLES OF A NUMBER
+function findMultiples(int, limit) {
+  let result = [];
+
+  for (let i = int; i <= limit; i += int) result.push(i);
+
+  return result;
+}
+
+// find max value
+const expression = (a, b, c) =>
+  Math.max(a + b + c, a * (b + c), (a + b) * c, a * b * c);
+console.log(2, 4, 6);
+
+// split()
+const str = 'The quick brown fox jumps over the lazy dog';
+
+const words = str.split(' ');
+console.log(words[3]); // fox
+
+const strCopy = str.split();
+console.log(strCopy); // copy of the string
