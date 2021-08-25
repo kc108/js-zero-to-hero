@@ -180,3 +180,5 @@
   - 1. filter(): returns all of the elements that meet a specific condition
   - 2. find(): only returns the first condition that meets a conditions
   - \*\*\* find only returns the element itself, WHILE filter() returns an array
+  - blur() - cool effect
+  - Implementing Login

@@ -63,62 +63,58 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Creating DOM Elements
-// better practice to pass function instead of working with Global Variables
-const displayMovements = function (movements) {
-  // innerHTML: includes the HTML TAGS
-  // textContent: does NOT include the HTML tags
-  containerMovements.innerHTML = '';
-  // .textContent = 0;
+/////////////////////////////////////////////////
+// Functions
 
-  movements.forEach(function (mov, i) {
+const displayMovements = function (movements, sort = false) {
+  containerMovements.innerHTML = '';
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
-    <div class="movements__row">
-        <div class="movements__type
-        movements__type--${type}">${i + 1} ${type}</div>
-        <div class="movements__value">${mov}</div>
-    </div>
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__value">${mov}€</div>
+        </div>
       `;
-    // 'afterbegin' -- there are 4 different ones
-    // beforebegin, beforeend, afterend
-    // DID NOT USE 'BEFORE END' because the order of the elements would be inverted
+
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 
-displayMovements(account1.movements);
-
-const calcDisplayBalance = function (movements) {
+const calcDisplayBalance = function (acc) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${acc.balance} EUR`;
 };
 
-calcDisplayBalance(account1.movements); // 3840 is now displayed in the DevConsole
+// calcDisplayBalance(account1.movements); // 3840 is now displayed in the DevConsole
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} EUR`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)} EUR`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
-      console.log(arr);
+      // console.log(arr);
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest} EUR`;
+  labelSumInterest.textContent = `${interest}€`;
 };
-
-calcDisplaySummary(account1.movements);
 
 // we do NOT have to return anything because we are doing what is called a 'side effect'.. basically some work behind the scenes
 const createUsernames = function (accs) {
@@ -133,7 +129,43 @@ const createUsernames = function (accs) {
 };
 
 createUsernames(accounts); // stw
-console.log(accounts); // console.log to show the username is now showing the 3 initials of user (e.g., js, js, stw, ss... etc)
+// console.log(accounts); // console.log to show the username is now showing the 3 initials of user (e.g., js, js, stw, ss... etc)
+
+// EVENT HANDLER: CLICKING OR HITTING ENTER REGISTERS CLICK EVENT
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  // PREVENT FORM FROM SUBMITTING
+  e.preventDefault();
+
+  //   console.log('LOGIN'); // FLASHES 'LOGIN'
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount); // {owner: "Jessica Davis"}...object
+
+  // OPTIONAL CHAINING: '?' following currentAccount
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and welcome message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    containerApp.style.opacity = 100;
+
+    // clear the input fields
+    inputLoginUsername = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+    // Display summary
+    calcDisplaySummary(currentAccount);
+    console.log('LOGIN');
+  }
+});
 
 // FILTER()
 // This is the modern ES6 way  of doing it
@@ -494,3 +526,7 @@ console.log(accounts);
 
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account); // {owner: "Jessica Davis"}... object is returned
+
+// /////////////////////////////////////////////////
+// *** Implementing the login method ****
+// /////////////////////////////////////////////////\
