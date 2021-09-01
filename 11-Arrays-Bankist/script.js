@@ -657,3 +657,50 @@ const deposit = mov => mov > 0;
 console.log(movements.some(deposit)); // true
 console.log(movements.every(deposit)); // false
 console.log(movements.filter(deposit)); // [200, 450, 3000, 70, 1300]
+
+/////////////////////////////////////////////////
+// FLAT AND FLATMAP
+/////////////////////////////////////////////////
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+
+// flat RELEASED in 2019 THEREFORE won't work in earlier browsers
+console.log(arr.flat()); // [1,2,3,4,5,6]
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat()); // 0: (2), 3, 4, Array(2), 7, 8]
+// 0: (2) [1, 2]
+// 1: 3
+// 2: 4
+// 3: (2) [5, 6]
+// 4: 7
+// 5: 8
+// length: 6
+
+// to use 2 levels deep put x inside of flat
+const arrDeep1 = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep1.flat(2));
+// [1, 2, 3, 4, 5, 6, 7, 8]
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+// const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
+// THIS add's up all of the balances to the array.
+
+// Condensing the above can do this
+// FLAT
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance); //17840
+
+// flatmap, combines both flat and map together
+// flatmap: only goes one level deep, if you need multiple levels do above
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
