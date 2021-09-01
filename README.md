@@ -177,8 +177,12 @@
 - you can chain as many methods as you want as long as they return a new array
 - THEREFORE you cannot chain something to the end of reduce()
 - reviewed difference between filter() and find()
+
   - 1. filter(): returns all of the elements that meet a specific condition
   - 2. find(): only returns the first condition that meets a conditions
   - \*\*\* find only returns the element itself, WHILE filter() returns an array
   - blur() - cool effect
   - Implementing Login
+
+  - indexOf(): expects a value as a first parameter. Good choice for Primitive Data Types
+  - findIndex(): expects a callBack as a first parameter. Use this if you need the index in arrays with NON-PRIMITIVE types (e.g., objects) or your find condition is more complex than JUST A VALUE
