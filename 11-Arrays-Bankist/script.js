@@ -756,3 +756,46 @@ movements.sort((a, b) => b - a);
 
 console.log(movements);
 // [3000, 1300, 450, 200, 70, -130, -400, -650]
+
+//////////////////////////////////////////////////////////
+// MORE WAYS OF CREATING AND FILLING ARRAYS
+//////////////////////////////////////////////////////////
+const arr1 = [1, 2, 3, 4, 5, 6, 7]; // [1, 2, 3, 4, 5, 6, 7]
+console.log(new Array(1, 2, 3, 4, 5, 6, 7)); // [1, 2, 3, 4, 5, 6, 7]
+
+// EMPTY ARRAYS + FILL METHOD ***
+const x = new Array(7); // [empty x 7]
+console.log(x); // [empty x 7]
+
+// console.log(x.map(() => 5)); // not useful
+
+// FILL METHOD *** this does mutate the entire array
+x.fill(1);
+console.log(x); // [1, 1, 1, 1, 1, 1, 1]
+
+x.fill(1, 3); // starts at index 3
+console.log(x); // [empty x 3, 1, 1, 1, 1]
+
+// SIMILAR TO SLICE, the final one is not included in the array
+x.fill(1, 3, 5);
+console.log(x);
+
+// EXAMPLE:
+arr1.fill(23, 4, 6);
+console.log(arr1);
+
+// ARRAY.FROM - used to create Arrays from other things
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y); // [1, 1, 1, 1, 1, 1, 1]
+
+// have access here to the CURRENT & THE INDEX
+// to denote you do not use the index you use an underscore
+// const z = Array.from({ length: 7 }, (cur, i) => i + 1);
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z); // [1, 2, 3, 4, 5, 6, 7]
+
+// *** THIS WILL ONLY WORK ON AN ARRAY ***
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(document.querySelectorAll('.movements_value'));
+  console.log(movementsUI.map(el => el.textContent.replace('€', '')));
+});
