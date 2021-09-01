@@ -69,6 +69,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
+  // cannot do this or it will sort the underlying array/data, instead we do a copy of the array using slice like below
+  // const movs = sort ? movements.sort()
+  // const movs = sort ? movements.slice().sort()
+
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
@@ -310,6 +314,15 @@ console.log(max); // 3000
 
 // console.log(containerMovements.innerHTML);
 // // SHOWS ALL OF THE HTML WE JUST CREATED
+
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  // SECOND PARAMETER, THE SORT PARAMETER IS SET TO TRUE
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -704,3 +717,42 @@ const overallBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
+
+//////////////////////////////////////////////////////////
+// SORTING ARRAYS
+//////////////////////////////////////////////////////////
+// BE CAREFUL BC it mutates the ORIGINAL ARRAY
+// Strings
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort()); // ['Adam', 'Jonas', 'Martha', 'Zach']
+console.log(owners); // ['Adam', 'Jonas', 'Martha', 'Zach']
+
+// NUMBERS
+console.log(movements);
+// console.log(movements.sort()); // sorting is based on 'strings' SO the numbers are not changed from the ORIGINAL array
+
+// RETURN < 0, A, B (keep order)
+// RETURN > 0, B, A (switch order)
+// ASCENDING
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// });
+
+// CAN ALSO DO THIS WAY ***
+movements.sort((a, b) => a - b);
+
+console.log(movements);
+// [-650, -400, -130, 70, 200, 450, 1300, 3000]
+
+// DESCENDING
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (b > a) return 1;
+// });
+
+// CAN ALSO DO THIS WAY ***
+movements.sort((a, b) => b - a);
+
+console.log(movements);
+// [3000, 1300, 450, 200, 70, -130, -400, -650]

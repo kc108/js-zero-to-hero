@@ -194,3 +194,4 @@
 - INCLUDES(): used to show equality
 - SOME(): used when a CONDITION/S are needed, should be called the ANY(). Tests whether at least one element in the array passes the test implemented by the provided function. RETURNS either TRUE or FALSE.
 - EVERY(): tests whether everything in array fits a specific condition
+- SORT(): will not work with an array of mixed types.
