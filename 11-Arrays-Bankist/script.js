@@ -201,6 +201,21 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   // console.log('Delete');
@@ -615,3 +630,30 @@ console.log(words[3]); // fox
 
 const strCopy = str.split();
 console.log(strCopy); // copy of the string
+
+console.log(movements);
+// INCLUDES : Specifies EQUALITY
+console.log(movements.includes(-130)); // RETURNS A 'true' or 'false' in this case it RETURNS 'true'
+
+// CONDITION
+console.log(movements.some(mov => mov === -130)); // true
+
+///////////////////////////////////////////////////////////
+// SOME AND EVERY
+///////////////////////////////////////////////////////////
+// SOME: CONDITION
+// specifies a CONDITION
+const anyDeposits1 = movements.some(mov => mov > 0);
+const anyDeposits2 = movements.some(mov => mov > 1500);
+console.log(anyDeposits1); // true
+console.log(anyDeposits2); // true
+
+// EVERY
+console.log(movements.every(mov => mov > 0)); // false because they are not all deposits
+console.log(account4.movements.every(mov => mov > 0)); // true because they are ALL deposits
+
+// SEPARATE CALLBACK
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit)); // true
+console.log(movements.every(deposit)); // false
+console.log(movements.filter(deposit)); // [200, 450, 3000, 70, 1300]

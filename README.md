@@ -186,3 +186,11 @@
 
   - indexOf(): expects a value as a first parameter. Good choice for Primitive Data Types
   - findIndex(): expects a callBack as a first parameter. Use this if you need the index in arrays with NON-PRIMITIVE types (e.g., objects) or your find condition is more complex than JUST A VALUE
+
+---
+
+##### SOME AND EVERY METHODS
+
+- INCLUDES(): used to show equality
+- SOME(): used when a CONDITION/S are needed, should be called the ANY(). Tests whether at least one element in the array passes the test implemented by the provided function. RETURNS either TRUE or FALSE.
+- EVERY(): tests whether everything in array fits a specific condition
