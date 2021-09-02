@@ -799,3 +799,79 @@ labelBalance.addEventListener('click', function () {
   const movementsUI = Array.from(document.querySelectorAll('.movements_value'));
   console.log(movementsUI.map(el => el.textContent.replace('€', '')));
 });
+
+/////////////////////////////////////////////////
+// WHICH ARRAY METHOD TO USE? 23 COVERED..
+/////////////////////////////////////////////////
+// what do I want from this method?
+// mutate original array, new array, an array index, an array element, know if an array includes, a new string, to transform to value
+
+/////////////////////////////////////////////////
+// ARRAY METHODS PRACTICE
+/////////////////////////////////////////////////
+// Exercise #1
+// whenever we have an array of arrays we can use the flatmap()
+// const bankDepositsSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((sum, cur) => sum + cur, 0);
+
+// console.log(bankDepositsSum); // 25180
+
+// // Exercise #2
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+
+// console.log(numDeposits1000); // 6 (shows there are 6 deposits over $1000)
+
+// // SECOND WAY: Exercise 2
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   // starts at 0, '+1'
+//   // .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+//   .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0); // if you console.log this it is 0
+
+// console.log(numDeposits1000); // 6 (shows there are 6 deposits over $1000)
+
+// a is still 10 because it logs the previous value UNLESS you log it again with 'console.log(a)', then it will be 11
+// let a = 10;
+// console.log(a++); // this will log the previous value (10)
+// console.log(++a); // this will work!!! (11)
+
+// Exercise #3
+// const { deposits, withdrawals } = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   );
+
+// console.log(deposits, withdrawals); // { deposits: 25180, withdrawals: -7340 }
+
+// Exercise #4
+// create a function to convert a string to a title case (all of the words in a sentence are capitalized except for some)
+// this is a nice title => This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  // *** it is a common practice to make an array of exceptions ***
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word =>
+      // exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1)
+      exceptions.includes(word) ? word : capitalize(word)
+    )
+    .join(' ');
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+console.log(convertTitleCase('and here is another title with an EXAMPLE'));
