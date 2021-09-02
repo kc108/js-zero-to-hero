@@ -196,3 +196,15 @@
 - EVERY(): tests whether everything in array fits a specific condition
 - SORT(): will not work with an array of mixed types.
 - Array.from - used to create arrays from Array-like functions. (eg, like maps, etc...)
+
+---
+
+##### SECTION 12 NUMBERS-DATES-TIMES
+
+- console.log(Number('23'));
+  // this will also work because of type cohersion
+  console.log(+'23');
+- parseInt()
+- parseFloat() should always be go tos
+- isFinite: best way to find out if a value is a number
+- isNan: gives true or false similar to 'isFinite'
