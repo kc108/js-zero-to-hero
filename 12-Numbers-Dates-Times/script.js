@@ -363,3 +363,42 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'blue';
   });
 });
+
+//////////////////////////////////////////////////////
+// WORKING WITH BIGINT
+//////////////////////////////////////////////////////
+// 2 because we are working with base 2, which is zeroes and ones
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991.. javaScript even has this to show number that is largest, if you console.log the following below it is not correct
+
+// these are called UNSAFE NUMBERS
+console.log(2 ** 53 + 1); // ONLY ADDED ONE NUMBER AND NOT 2
+
+// bigInt was added in 2020, used to store integers no matter how big
+console.log(456789123456465546546543541685797351n);
+// the 'n' at the end uses this to display large numbers accurately
+
+console.log(BigInt(456789123456465546546543541685797351));
+
+// OPERATIONS
+console.log(10000n + 10000n); // 20000n
+console.log(12746546579873213216546546n * 1000000000n);
+
+// *** CANNOT MIX REGULAR NUMBERS WITH BIG INT NUMBERS
+const huge = 20346546546n;
+const num = 23;
+// console.log(huge * num); // ERROR
+console.log(huge * BigInt(num));
+
+console.log(20n > 15); // true
+console.log(20n === 20); // false : this makes sense because type cohersion is not used here. we can check that by doing the following
+console.log(typeof 20n); // bigInt
+console.log(20n == 20); // true because JS does the type cohersion
+
+console.log(huge + ' is REALLY big!!!'); //
+
+// cannot do math operations with big Int
+
+// Divisions
+console.log(10n / 3n); // 3n
+console.log(10 / 3); // 3.333333333335
