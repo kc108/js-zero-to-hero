@@ -208,3 +208,9 @@
 - parseFloat() should always be go tos
 - isFinite: best way to find out if a value is a number
 - isNan: gives true or false similar to 'isFinite'
+- FORMULA TO GET A RANDOM NUMBER:
+- const randomInt = (min, max) =>
+  Math.trunc(Math.random() \* (max - min) + 1) + min;
+  console.log(randomInt(10, 20)); // NUMBER BETWEEN 10-20
+- toFixed(): to demonstrate how to put a specified number of decimal places
+- Math.floor, Math.ceil, Math.max, Math.min
