@@ -214,3 +214,7 @@
   console.log(randomInt(10, 20)); // NUMBER BETWEEN 10-20
 - toFixed(): to demonstrate how to put a specified number of decimal places
 - Math.floor, Math.ceil, Math.max, Math.min
+
+---
+
+###### CREATING DATES

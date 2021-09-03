@@ -402,3 +402,38 @@ console.log(huge + ' is REALLY big!!!'); //
 // Divisions
 console.log(10n / 3n); // 3n
 console.log(10 / 3); // 3.333333333335
+
+//////////////////////////////////////////////////////
+// CREATING DATES
+//////////////////////////////////////////////////////
+// 1.
+const now = new Date();
+console.log(now); // RETURNS CURRENT DATE: in the following format -> Friday Sep 03 2021 08:19 GMT-0700 (Pacific Daylight Time)
+
+// 2.
+console.log(new Date('Aug 20 2020 18:05:41'));
+console.log(new Date('December 24, 2015')); // NOT a good practice to do this because it is UNRELIABLE
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // Thu Nov 19 2037 15:23:05
+console.log(new Date(2037, 10, 33)); // js autocorrects to December 01
+
+console.log(new Date(0)); // Thu Jan 01 1970
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // 2037
+console.log(future.getMonth()); // 10
+console.log(future.getDay()); // 4
+console.log(future.getSeconds()); // 0
+console.log(future.toISOString()); // 2037-11-19T23:23:00.000Z
+console.log(future.getTime()); // 2142285780000
+
+console.log(new Date(2142285780000)); // gives the date based on the milliseconds that have passed since jan 1 1970
+
+console.log(Date.now); // gives the current date in milliseconds for the current time
+
+future.setFullYear(2040);
+console.log(future); // Mon Nov 19 2040 15:23:00 GMT+0000
