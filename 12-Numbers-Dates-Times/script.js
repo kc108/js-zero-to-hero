@@ -635,3 +635,53 @@ class SmallestIntegerFinder {
     return Math.min(...args);
   }
 }
+
+//
+function highAndLow(numbers) {
+  let num = numbers.split(' ');
+  return `${Math.max(...num)} ${Math.min(...num)}`;
+}
+
+console.log(highAndLow('1 2 3 4 5'));
+
+// CODE WARS
+function fakeBin(str) {
+  let newStr = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[I] >= 5) {
+      newStr += '1';
+    } else {
+      newStr += '0';
+    }
+  }
+  return newStr;
+}
+
+// ... or
+function fakeBin(x) {
+  return x
+    .split('')
+    .map(n => (n < 5 ? 0 : 1))
+    .join('');
+}
+
+// #2 question mark return
+const ensureQuestion = s => (s.endsWith('?') ? s : s + '?');
+
+// or ...
+function checkQuestion(s) {
+  return s.split('?').join('').concat('?');
+}
+console.log(checkQuestion('hello. how are you? cats are koooool.'));
+
+// // or ...
+// const checkingTheQuestion(s) {
+//   return s.slice(-1) === '?' ? s : s + '?'
+// }
+
+function feast(beast, dish) {
+  return beast[0] === dish[0] && beast.slice(-1) === dish.slice(-1);
+}
+
+console.log(feast('bobcat', 'beet'));
+// true
