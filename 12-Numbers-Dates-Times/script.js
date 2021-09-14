@@ -819,3 +819,89 @@ function fillInNumbers(n) {
     .map((_, idx) => idx + 1);
 }
 console.log(fillInNumbers(10)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+///////////////////////////////////////////////////////////////
+// *** RESULTS IN NEW ARRAY ***
+///////////////////////////////////////////////////////////////
+// MAP() =>
+const items = [
+  { name: 'Bike', price: 100 },
+  { name: 'TV', price: 200 },
+  { name: 'Album', price: 10 },
+  { name: 'Book', price: 5 },
+  { name: 'Phone', price: 500 },
+  { name: 'Computer', price: 1000 },
+  { name: 'Keyboard', price: 25 },
+];
+
+// FILTER()
+const filteredItems = items.filter(item => {
+  return item.price <= 100;
+});
+
+console.log(filteredItems); // Returns all Items under 100
+
+// MAP()
+const itemNames = items.map(item => {
+  return item.name;
+});
+
+console.log(itemNames); // ['Bike', 'TV', 'Album', 'Book', 'Phone', 'Computer', 'Keyboard']
+
+// FIND()
+const foundItem = items.find(item => {
+  return item.name === 'Book';
+});
+
+console.log(foundItem); // { name: 'Book', price: 5 }
+
+// forEach
+items.forEach(item => {
+  console.log(item.name);
+});
+// Bike
+// TV
+// Album
+// Book
+// Phone
+// Computer
+// Keyboard
+
+// SOME() => THINK OF AS ANY ***
+const hasInexpensiveItems = items.some(item => {
+  return item.price <= 100;
+});
+
+console.log(hasInexpensiveItems); // true
+
+// EVERY() => CHECKS ALL ITEMS ***
+const hasInexpensiveItems1 = items.every(item => {
+  return item.price <= 100;
+});
+
+console.log(hasInexpensiveItems1); // false
+
+// ************* REDUCE() ***************
+const total = items.reduce((currentTotal, item) => {
+  return item.price + currentTotal;
+}, 0);
+
+console.log(total); // 1840
+
+// INCLUDES()
+const item108 = [1, 2, 3, 4, 5];
+const includesTwo = item108.includes(2);
+console.log(includesTwo); // true
+
+// SLICE()
+const dogs = ['Juno', 'Damian', 'Riggs', 'Rocky'];
+console.log(dogs.slice()); // ['Juno', 'Damian', 'Riggs', 'Rocky']
+console.log(dogs.slice(1, 3)); // ['Damian', 'Riggs']
+console.log(dogs);
+
+// CONCAT()
+const mammals = ['otter', 'platypus', 'cat', 'dog'];
+const reptiles = ['boa', 'gecko'];
+
+const allAnimals = mammals.concat(reptiles);
+console.log(allAnimals); // ['otter', 'platypus', 'cat', 'dog', 'boa', 'gecko']
