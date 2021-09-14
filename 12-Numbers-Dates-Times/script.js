@@ -583,105 +583,239 @@
 //////////////////////////////////////////////////////
 // CODE WARS 1/2 HOUR
 //////////////////////////////////////////////////////
-// converts input string to uppercase
-function makeUpperCase(str) {
-  return str.toUpperCase();
-}
-console.log(makeUpperCase('these cats'));
+// // converts input string to uppercase
+// function makeUpperCase(str) {
+//   return str.toUpperCase();
+// }
+// console.log(makeUpperCase('these cats'));
 
-// Complete the function that takes two integers (a, b, where a < b) and return an array of all integers between the input parameters, including them.
+// // Complete the function that takes two integers (a, b, where a < b) and return an array of all integers between the input parameters, including them.
 
-const between = (a, b) => {
-  let finalArr = [];
+// const between = (a, b) => {
+//   let finalArr = [];
 
-  for (let i = a; i <= b; i++) {
-    finalArr.push(i);
-  }
-  return finalArr;
-};
+//   for (let i = a; i <= b; i++) {
+//     finalArr.push(i);
+//   }
+//   return finalArr;
+// };
 
-console.log(between(6, 10));
+// console.log(between(6, 10));
 
-// Timmy & Sarah think they are in love, but around where they live, they will only know once they pick a flower each. If one of the flowers has an even number of petals and the other has an odd number of petals it means they are in love.
+// // Timmy & Sarah think they are in love, but around where they live, they will only know once they pick a flower each. If one of the flowers has an even number of petals and the other has an odd number of petals it means they are in love.
 
-// Write a function that will take the number of petals of each flower and return true if they are in love and false if they aren't.
-const lovefunc = (flower1, flower2) => {
-  return (flower1 + flower2) % 2 === 1;
-};
+// // Write a function that will take the number of petals of each flower and return true if they are in love and false if they aren't.
+// const lovefunc = (flower1, flower2) => {
+//   return (flower1 + flower2) % 2 === 1;
+// };
 
-console.log(lovefunc(3, 5));
-console.log(lovefunc(3, 6));
+// console.log(lovefunc(3, 5));
+// console.log(lovefunc(3, 6));
 
-//
-const openOrSenior = data => {
-  return data.map(([age, handicap]) =>
-    age > 54 && handicap > 7 ? 'Senior' : 'Open'
-  );
-};
+// //
+// const openOrSenior = data => {
+//   return data.map(([age, handicap]) =>
+//     age > 54 && handicap > 7 ? 'Senior' : 'Open'
+//   );
+// };
 
-// convert number to a string
-function numberToString(num) {
-  return num.toString();
-}
+// // convert number to a string
+// function numberToString(num) {
+//   return num.toString();
+// }
 
-// RETURN HOW MANY YEARS AGO THE father was twice as old as his son ( or in how many years he will be twice as old)
-const twiceAsOld = (dadYearsOld, sonsYearOld) => {
-  return Math.abs(dadYearsOld - 2 * sonsYearOld);
-};
+// // RETURN HOW MANY YEARS AGO THE father was twice as old as his son ( or in how many years he will be twice as old)
+// const twiceAsOld = (dadYearsOld, sonsYearOld) => {
+//   return Math.abs(dadYearsOld - 2 * sonsYearOld);
+// };
 
 // Given an array of integers your solution should find the smallest integer.
-class SmallestIntegerFinder {
-  findSmallestInt(args) {
-    return Math.min(...args);
-  }
-}
+// class SmallestIntegerFinder {
+//   findSmallestInt(args) {
+//     return Math.min(...args);
+//   }
+// }
 
-//
-function highAndLow(numbers) {
-  let num = numbers.split(' ');
-  return `${Math.max(...num)} ${Math.min(...num)}`;
-}
+// //
+// function highAndLow(numbers) {
+//   let num = numbers.split(' ');
+//   return `${Math.max(...num)} ${Math.min(...num)}`;
+// }
 
-console.log(highAndLow('1 2 3 4 5'));
+// console.log(highAndLow('1 2 3 4 5'));
 
-// CODE WARS
-function fakeBin(str) {
-  let newStr = '';
-  for (let i = 0; i < str.length; i++) {
-    if (str[I] >= 5) {
-      newStr += '1';
-    } else {
-      newStr += '0';
-    }
-  }
-  return newStr;
-}
+// // CODE WARS
+// function fakeBin(str) {
+//   let newStr = '';
+//   for (let i = 0; i < str.length; i++) {
+//     if (str[I] >= 5) {
+//       newStr += '1';
+//     } else {
+//       newStr += '0';
+//     }
+//   }
+//   return newStr;
+// }
 
 // ... or
-function fakeBin(x) {
-  return x
-    .split('')
-    .map(n => (n < 5 ? 0 : 1))
-    .join('');
-}
+// function fakeBin(x) {
+//   return x
+//     .split('')
+//     .map(n => (n < 5 ? 0 : 1))
+//     .join('');
+// }
 
-// #2 question mark return
-const ensureQuestion = s => (s.endsWith('?') ? s : s + '?');
+// // #2 question mark return
+// const ensureQuestion = s => (s.endsWith('?') ? s : s + '?');
 
-// or ...
-function checkQuestion(s) {
-  return s.split('?').join('').concat('?');
-}
-console.log(checkQuestion('hello. how are you? cats are koooool.'));
+// // or ...
+// function checkQuestion(s) {
+//   return s.split('?').join('').concat('?');
+// }
+// console.log(checkQuestion('hello. how are you? cats are koooool.'));
 
 // // or ...
 // const checkingTheQuestion(s) {
 //   return s.slice(-1) === '?' ? s : s + '?'
 // }
 
-function feast(beast, dish) {
-  return beast[0] === dish[0] && beast.slice(-1) === dish.slice(-1);
+// function feast(beast, dish) {
+//   return beast[0] === dish[0] && beast.slice(-1) === dish.slice(-1);
+// }
+
+// console.log(feast('bobcat', 'beet'));
+// // true
+
+// function sortByLength(array) {
+//   // Return an array containing the same strings, ordered from shortest to longest
+//   return array.sort((a, b) => a.length - b.length);
+// }
+
+// // CODE WARS PRACTICE *** #1
+// function(a, b) {
+//   let arr = [];
+//   for(let i = a; i < b; i++) {
+//     arr.push(i)
+//   }
+//   return arr;
+// }
+
+// const ifChuckSaysSo = () => !true;
+
+/////////////////////////////////////////////////
+// CODE WARS PRACTICE
+/////////////////////////////////////////////////
+// function lovefunc(flower1, flower2) {
+//   return (flower1 + flower2) % 2 === 1;
+// }
+
+// CODE WARS PRACTICE #1
+// return short-long-short pattern
+// function solution(a, b) {
+//   return a.length < b.length ? a + b + a : b + a + b;
+// }
+
+// CODE WARS PRACTICE #2
+// function alphabetWar(fight) {
+//     let map = { w: -4, p: -3, b: -2, s: -1, m: 4, q: 3, d: 2, z: 1 };
+//     let result = fight.split('').reduce((a, b) => a + (map[b] || 0), 0);
+//     return result ? (result < 0 ? "Left" : "Right") + " side wins!" : "Let's fight again!";
+// }
+
+// CODE WARS PRACTICE #3
+usdcny = $ => `${($ * 6.75).toFixed(2)} Chinese Yuan`;
+console.log(usdcny(108.08)); // 729.54 Chinese Yuan
+
+// return the opposite number
+function opposite(number) {
+  return -number;
 }
 
-console.log(feast('bobcat', 'beet'));
-// true
+function invert(array) {
+  return array.map(x => (x === 0 ? x : -x));
+}
+
+// Given an array of integers.
+// Return an array, where the first element is the count of positives numbers and the second element is sum of negative numbers.
+// *** If the input array is empty or null, return an empty array.
+function countPositivesSumNegatives(input) {
+  return input && input.length
+    ? [
+        input.filter(p => p > 0).length,
+        input.filter(n => n < 0).reduce((a, b) => a + b, 0),
+      ]
+    : [];
+}
+
+// Sum all the numbers of the array (in F# and Haskell you get a list) except the highest and the lowest element (the value, not the index!).
+// (The highest/lowest element is respectively only one element at each edge, even if there are more than one with the same value!)
+
+const sumArray = array =>
+  array
+    ? a
+        .sort((x, y) => x - y)
+        .slice(1, -1)
+        .reduce((s, e) => s + e, 0)
+    : 0;
+
+////////////////////////////////////////////
+// basic js practice
+////////////////////////////////////////////
+// *** CHANGES ORIGINAL ARRAY ***
+// PUSH()
+const nums = [1, 2, 3, 4, 5, 6, 7];
+console.log(nums.push(8)); // 8
+console.log(nums); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+// UNSHIFT()
+console.log(nums.unshift(0)); // *** returns 8... the new length of the array NOT the number added to the array
+console.log(nums); // [0, 1, 2, 3, 4, 5, 6, 7]
+
+// *** REMOVE FROM ORIGINAL ARRAY ***
+const cats = ['Bear', 'Finn', 'Koda', 'Kai'];
+
+// POP() => (END)
+// console.log(cats.pop()); // RETURNS 'Kai'. /... NOT ['Bear', 'Finn', 'Koda']
+
+// SHIFT() => (START)
+console.log(cats.shift()); // 'Bear'
+console.log(cats); // ['Finn', 'Koda', 'Kai']
+
+// SPLICE() => (ANY)
+console.log(cats.splice());
+console.log(cats); // ['Finn', 'Koda', 'Kai']
+
+// new arr for practice
+const evens = [2, 4, 6, 8, 10, 12, 14];
+console.log(evens.splice(2, 2)); // [6, 8]
+console.log(evens); // [2, 4, 10, 12, 14]
+
+// new arr for more practice
+const odds = [1, 3, 5, 7, 9, 11, 13];
+console.log(odds.splice(2, 2)); // [5, 7]
+console.log(odds); // [1, 3, 9, 11, 13]
+
+// ** NEW ARRAY FOR OTHERS ***
+const snacks = ['hummus', 'apple', 'twinkie', 'ice cream'];
+console.log(snacks.reverse()); // ['ice cream', 'twinkie', 'apple', 'hummus']
+
+console.log(snacks.sort()); // sorts alphabetically *** // ['apple', 'hummus', 'ice cream', 'twinkie']
+
+const numbers = [1, 2, 3, 4, 5];
+// const num2 = numbers.fill(0);
+// console.log(numbers); // [0, 0, 0, 0, 0];
+// console.log(num2); // [0, 0, 0, 0, 0];
+
+// Fill with 0 from position 1 until position 4
+const num3 = numbers.fill(0, 1, 4);
+console.log(num3); // [1, 0, 0, 0, 5]
+
+// Clever Way to make an Array from 1-nth Number
+const numbers1 = [1, 2, 3, 4, 5];
+
+function fillInNumbers(n) {
+  return Array(n)
+    .fill(0)
+    .map((_, idx) => idx + 1);
+}
+console.log(fillInNumbers(10)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
