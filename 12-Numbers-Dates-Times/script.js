@@ -722,186 +722,221 @@
 //     return result ? (result < 0 ? "Left" : "Right") + " side wins!" : "Let's fight again!";
 // }
 
-// CODE WARS PRACTICE #3
-usdcny = $ => `${($ * 6.75).toFixed(2)} Chinese Yuan`;
-console.log(usdcny(108.08)); // 729.54 Chinese Yuan
+// // CODE WARS PRACTICE #3
+// usdcny = $ => `${($ * 6.75).toFixed(2)} Chinese Yuan`;
+// console.log(usdcny(108.08)); // 729.54 Chinese Yuan
 
-// return the opposite number
-function opposite(number) {
-  return -number;
-}
+// // return the opposite number
+// function opposite(number) {
+//   return -number;
+// }
 
-function invert(array) {
-  return array.map(x => (x === 0 ? x : -x));
-}
+// function invert(array) {
+//   return array.map(x => (x === 0 ? x : -x));
+// }
 
-// Given an array of integers.
-// Return an array, where the first element is the count of positives numbers and the second element is sum of negative numbers.
-// *** If the input array is empty or null, return an empty array.
-function countPositivesSumNegatives(input) {
-  return input && input.length
-    ? [
-        input.filter(p => p > 0).length,
-        input.filter(n => n < 0).reduce((a, b) => a + b, 0),
-      ]
-    : [];
-}
+// // Given an array of integers.
+// // Return an array, where the first element is the count of positives numbers and the second element is sum of negative numbers.
+// // *** If the input array is empty or null, return an empty array.
+// function countPositivesSumNegatives(input) {
+//   return input && input.length
+//     ? [
+//         input.filter(p => p > 0).length,
+//         input.filter(n => n < 0).reduce((a, b) => a + b, 0),
+//       ]
+//     : [];
+// }
 
-// Sum all the numbers of the array (in F# and Haskell you get a list) except the highest and the lowest element (the value, not the index!).
-// (The highest/lowest element is respectively only one element at each edge, even if there are more than one with the same value!)
+// // Sum all the numbers of the array (in F# and Haskell you get a list) except the highest and the lowest element (the value, not the index!).
+// // (The highest/lowest element is respectively only one element at each edge, even if there are more than one with the same value!)
 
-const sumArray = array =>
-  array
-    ? a
-        .sort((x, y) => x - y)
-        .slice(1, -1)
-        .reduce((s, e) => s + e, 0)
-    : 0;
+// const sumArray = array =>
+//   array
+//     ? a
+//         .sort((x, y) => x - y)
+//         .slice(1, -1)
+//         .reduce((s, e) => s + e, 0)
+//     : 0;
 
-////////////////////////////////////////////
-// basic js practice
-////////////////////////////////////////////
-// *** CHANGES ORIGINAL ARRAY ***
-// PUSH()
-const nums = [1, 2, 3, 4, 5, 6, 7];
-console.log(nums.push(8)); // 8
-console.log(nums); // [1, 2, 3, 4, 5, 6, 7, 8]
+// ////////////////////////////////////////////
+// // basic js practice
+// ////////////////////////////////////////////
+// // *** CHANGES ORIGINAL ARRAY ***
+// // PUSH()
+// const nums = [1, 2, 3, 4, 5, 6, 7];
+// console.log(nums.push(8)); // 8
+// console.log(nums); // [1, 2, 3, 4, 5, 6, 7, 8]
 
-// UNSHIFT()
-console.log(nums.unshift(0)); // *** returns 8... the new length of the array NOT the number added to the array
-console.log(nums); // [0, 1, 2, 3, 4, 5, 6, 7]
+// // UNSHIFT()
+// console.log(nums.unshift(0)); // *** returns 8... the new length of the array NOT the number added to the array
+// console.log(nums); // [0, 1, 2, 3, 4, 5, 6, 7]
 
-// *** REMOVE FROM ORIGINAL ARRAY ***
-const cats = ['Bear', 'Finn', 'Koda', 'Kai'];
+// // *** REMOVE FROM ORIGINAL ARRAY ***
+// const cats = ['Bear', 'Finn', 'Koda', 'Kai'];
 
-// POP() => (END)
-// console.log(cats.pop()); // RETURNS 'Kai'. /... NOT ['Bear', 'Finn', 'Koda']
+// // POP() => (END)
+// // console.log(cats.pop()); // RETURNS 'Kai'. /... NOT ['Bear', 'Finn', 'Koda']
 
-// SHIFT() => (START)
-console.log(cats.shift()); // 'Bear'
-console.log(cats); // ['Finn', 'Koda', 'Kai']
+// // SHIFT() => (START)
+// console.log(cats.shift()); // 'Bear'
+// console.log(cats); // ['Finn', 'Koda', 'Kai']
 
-// SPLICE() => (ANY)
-console.log(cats.splice());
-console.log(cats); // ['Finn', 'Koda', 'Kai']
+// // SPLICE() => (ANY)
+// console.log(cats.splice());
+// console.log(cats); // ['Finn', 'Koda', 'Kai']
 
-// new arr for practice
-const evens = [2, 4, 6, 8, 10, 12, 14];
-console.log(evens.splice(2, 2)); // [6, 8]
-console.log(evens); // [2, 4, 10, 12, 14]
+// // new arr for practice
+// const evens = [2, 4, 6, 8, 10, 12, 14];
+// console.log(evens.splice(2, 2)); // [6, 8]
+// console.log(evens); // [2, 4, 10, 12, 14]
 
-// new arr for more practice
-const odds = [1, 3, 5, 7, 9, 11, 13];
-console.log(odds.splice(2, 2)); // [5, 7]
-console.log(odds); // [1, 3, 9, 11, 13]
+// // new arr for more practice
+// const odds = [1, 3, 5, 7, 9, 11, 13];
+// console.log(odds.splice(2, 2)); // [5, 7]
+// console.log(odds); // [1, 3, 9, 11, 13]
 
-// ** NEW ARRAY FOR OTHERS ***
-const snacks = ['hummus', 'apple', 'twinkie', 'ice cream'];
-console.log(snacks.reverse()); // ['ice cream', 'twinkie', 'apple', 'hummus']
+// // ** NEW ARRAY FOR OTHERS ***
+// const snacks = ['hummus', 'apple', 'twinkie', 'ice cream'];
+// console.log(snacks.reverse()); // ['ice cream', 'twinkie', 'apple', 'hummus']
 
-console.log(snacks.sort()); // sorts alphabetically *** // ['apple', 'hummus', 'ice cream', 'twinkie']
+// console.log(snacks.sort()); // sorts alphabetically *** // ['apple', 'hummus', 'ice cream', 'twinkie']
 
-const numbers = [1, 2, 3, 4, 5];
-// const num2 = numbers.fill(0);
-// console.log(numbers); // [0, 0, 0, 0, 0];
-// console.log(num2); // [0, 0, 0, 0, 0];
+// const numbers = [1, 2, 3, 4, 5];
+// // const num2 = numbers.fill(0);
+// // console.log(numbers); // [0, 0, 0, 0, 0];
+// // console.log(num2); // [0, 0, 0, 0, 0];
 
-// Fill with 0 from position 1 until position 4
-const num3 = numbers.fill(0, 1, 4);
-console.log(num3); // [1, 0, 0, 0, 5]
+// // Fill with 0 from position 1 until position 4
+// const num3 = numbers.fill(0, 1, 4);
+// console.log(num3); // [1, 0, 0, 0, 5]
 
-// Clever Way to make an Array from 1-nth Number
-const numbers1 = [1, 2, 3, 4, 5];
+// // Clever Way to make an Array from 1-nth Number
+// const numbers1 = [1, 2, 3, 4, 5];
 
-function fillInNumbers(n) {
-  return Array(n)
-    .fill(0)
-    .map((_, idx) => idx + 1);
-}
-console.log(fillInNumbers(10)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// function fillInNumbers(n) {
+//   return Array(n)
+//     .fill(0)
+//     .map((_, idx) => idx + 1);
+// }
+// console.log(fillInNumbers(10)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-///////////////////////////////////////////////////////////////
-// *** RESULTS IN NEW ARRAY ***
-///////////////////////////////////////////////////////////////
-// MAP() =>
-const items = [
-  { name: 'Bike', price: 100 },
-  { name: 'TV', price: 200 },
-  { name: 'Album', price: 10 },
-  { name: 'Book', price: 5 },
-  { name: 'Phone', price: 500 },
-  { name: 'Computer', price: 1000 },
-  { name: 'Keyboard', price: 25 },
-];
+// ///////////////////////////////////////////////////////////////
+// // *** RESULTS IN NEW ARRAY ***
+// ///////////////////////////////////////////////////////////////
+// // MAP() =>
+// const items = [
+//   { name: 'Bike', price: 100 },
+//   { name: 'TV', price: 200 },
+//   { name: 'Album', price: 10 },
+//   { name: 'Book', price: 5 },
+//   { name: 'Phone', price: 500 },
+//   { name: 'Computer', price: 1000 },
+//   { name: 'Keyboard', price: 25 },
+// ];
 
-// FILTER()
-const filteredItems = items.filter(item => {
-  return item.price <= 100;
-});
+// // FILTER()
+// const filteredItems = items.filter(item => {
+//   return item.price <= 100;
+// });
 
-console.log(filteredItems); // Returns all Items under 100
+// console.log(filteredItems); // Returns all Items under 100
 
-// MAP()
-const itemNames = items.map(item => {
-  return item.name;
-});
+// // MAP()
+// const itemNames = items.map(item => {
+//   return item.name;
+// });
 
-console.log(itemNames); // ['Bike', 'TV', 'Album', 'Book', 'Phone', 'Computer', 'Keyboard']
+// console.log(itemNames); // ['Bike', 'TV', 'Album', 'Book', 'Phone', 'Computer', 'Keyboard']
 
-// FIND()
-const foundItem = items.find(item => {
-  return item.name === 'Book';
-});
+// // FIND()
+// const foundItem = items.find(item => {
+//   return item.name === 'Book';
+// });
 
-console.log(foundItem); // { name: 'Book', price: 5 }
+// console.log(foundItem); // { name: 'Book', price: 5 }
 
-// forEach
-items.forEach(item => {
-  console.log(item.name);
-});
-// Bike
-// TV
-// Album
-// Book
-// Phone
-// Computer
-// Keyboard
+// // forEach
+// items.forEach(item => {
+//   console.log(item.name);
+// });
+// // Bike
+// // TV
+// // Album
+// // Book
+// // Phone
+// // Computer
+// // Keyboard
 
-// SOME() => THINK OF AS ANY ***
-const hasInexpensiveItems = items.some(item => {
-  return item.price <= 100;
-});
+// // SOME() => THINK OF AS ANY ***
+// const hasInexpensiveItems = items.some(item => {
+//   return item.price <= 100;
+// });
 
-console.log(hasInexpensiveItems); // true
+// console.log(hasInexpensiveItems); // true
 
-// EVERY() => CHECKS ALL ITEMS ***
-const hasInexpensiveItems1 = items.every(item => {
-  return item.price <= 100;
-});
+// // EVERY() => CHECKS ALL ITEMS ***
+// const hasInexpensiveItems1 = items.every(item => {
+//   return item.price <= 100;
+// });
 
-console.log(hasInexpensiveItems1); // false
+// console.log(hasInexpensiveItems1); // false
 
-// ************* REDUCE() ***************
-const total = items.reduce((currentTotal, item) => {
-  return item.price + currentTotal;
-}, 0);
+// // ************* REDUCE() ***************
+// const total = items.reduce((currentTotal, item) => {
+//   return item.price + currentTotal;
+// }, 0);
 
-console.log(total); // 1840
+// console.log(total); // 1840
 
-// INCLUDES()
-const item108 = [1, 2, 3, 4, 5];
-const includesTwo = item108.includes(2);
-console.log(includesTwo); // true
+// // INCLUDES()
+// const item108 = [1, 2, 3, 4, 5];
+// const includesTwo = item108.includes(2);
+// console.log(includesTwo); // true
 
-// SLICE()
-const dogs = ['Juno', 'Damian', 'Riggs', 'Rocky'];
-console.log(dogs.slice()); // ['Juno', 'Damian', 'Riggs', 'Rocky']
-console.log(dogs.slice(1, 3)); // ['Damian', 'Riggs']
-console.log(dogs);
+// // SLICE()
+// const dogs = ['Juno', 'Damian', 'Riggs', 'Rocky'];
+// console.log(dogs.slice()); // ['Juno', 'Damian', 'Riggs', 'Rocky']
+// console.log(dogs.slice(1, 3)); // ['Damian', 'Riggs']
+// console.log(dogs);
 
-// CONCAT()
-const mammals = ['otter', 'platypus', 'cat', 'dog'];
-const reptiles = ['boa', 'gecko'];
+// // CONCAT()
+// const mammals = ['otter', 'platypus', 'cat', 'dog'];
+// const reptiles = ['boa', 'gecko'];
 
-const allAnimals = mammals.concat(reptiles);
-console.log(allAnimals); // ['otter', 'platypus', 'cat', 'dog', 'boa', 'gecko']
+// const allAnimals = mammals.concat(reptiles);
+// console.log(allAnimals); // ['otter', 'platypus', 'cat', 'dog', 'boa', 'gecko']
+
+// // FLAT()
+// const arr1 = [1, 2, 3, 4, [5, 6, 7]];
+// console.log(arr1.flat()); // [1, 2, 3, 4, 5, 6, 7]
+
+// MAP() vs FLATMAP()
+
+// ** MAP() **
+const arrMap = [1, 2, 3, 4, [5, 6, 7]];
+let result1 = arrMap.map(x => [x * 2]);
+console.log(result1); // [2][4][6][8]
+console.log(arrMap);
+
+// ** FLATMAP() **
+const flatMapMethod = [1, 2, 3, 4, [5, 6, 7]];
+let result2 = flatMapMethod.flatMap(x => [x * 2]);
+console.log(result2); // [2, 4, 6, 8]
+
+// ** FLATMAP() ** Can ONLY be used to flatten ONE LEVEL
+const flatMapMethod2 = [1, 2, 3, 4, [5, 6, 7]];
+let result3 = flatMapMethod2.flatMap(x => [x * 2]);
+
+console.log(result3); // [2, 4, 6, 8]
+
+// indexOf() => RETURNS the 'index' of a variable type
+// USE indexOf() WHEN YOU WANT TO FIND THE INDEX OF THE FIRST OCCURENCE OF A SPECIFIC VALUE IN AN ARRAY
+const indexOfArr = ['pixie bob', 'domestic', 'maine coon', 'forest cat'];
+console.log(indexOfArr.indexOf('pixie bob')); // 0
+
+// findIndex =>
+// USE findIndex() WHEN WE WANT TO CHECK A CONDITION FOR EACH ELEMENT OF AN ARRAY, UNTIL THE CONDITION IS MET, AND GET THE INDEX OF THE FIRST ARRAY ELEMENT THAT PASSES SAID CONDITION
+const array13 = [5, 12, 8, 130, 44];
+
+const isLargeNum = element => element > 13;
+console.log(array13.findIndex(isLargeNum));
