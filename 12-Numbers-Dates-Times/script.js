@@ -940,3 +940,31 @@ const array13 = [5, 12, 8, 130, 44];
 
 const isLargeNum = element => element > 13;
 console.log(array13.findIndex(isLargeNum));
+
+/////////////////////////////////////////////
+// CODE WAR PRACTICE #1
+/////////////////////////////////////////////
+// Given an array of integers, return a new array with each value doubled.
+
+// REGULAR FUNCTION
+function maps(x) {
+  return x.map(x => x * 2);
+}
+
+// ARROW FUNCTION
+const maps1 = x => x.map(x => x * 2);
+console.log(maps1);
+
+// Make a simple function called greet that returns the most-famous "hello world!".
+const greet = () => 'hello world!';
+console.log(greet);
+
+// function that returns the
+function strCount(str, letter) {
+  return letter.split(letter).length - 1;
+}
+console.log(strCount('hello', 'cats are awesome', 'hello'));
+
+// ARROW FUNCTION
+const strCount1 = (str, letter) => str.split(letter).length - 1;
+console.log(strCount1);
